@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-container fluid>
+    <b-container fluid class="topbar-container">
       <b-row>
         <b-col><topbar /></b-col>
       </b-row>
@@ -35,8 +35,18 @@
 
 <style lang="scss">
 
+  html, body{
+    margin: 0;
+    padding: 0;
+  }
+
   body{
     background-color: beige;
+  }
+
+  .container-fluid.topbar-container{
+    background-color: white;
+    margin-bottom: 15px;
   }
 
 </style>

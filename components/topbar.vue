@@ -1,11 +1,11 @@
 <template>
   <div class="topbar">
     <b-container>
-      <b-row align-v="stretch">
-        <b-col cols="2"><nuxt-link :to="localePath('art')">{{ $t('art') }}</nuxt-link></b-col>
-        <b-col cols="2"><nuxt-link :to="localePath('politics')">{{ $t('politics') }}</nuxt-link></b-col>
-        <b-col cols="2" class="ml-auto"><nuxt-link v-for="locale in availableLocales" :key="locale.code" :to="switchLocalePath(locale.code)">{{ locale.name }}</nuxt-link></b-col>
-      </b-row>
+      <div class="topbar-row">
+        <nuxt-link :to="localePath('art')"><span>{{ $t('art') }}</span></nuxt-link>
+        <nuxt-link :to="localePath('politics')"><span>{{ $t('politics') }}</span></nuxt-link>
+        <nuxt-link v-for="locale in availableLocales" :key="locale.code" :to="switchLocalePath(locale.code)" class="align-right"><span>{{ locale.name }}</span></nuxt-link>
+      </div>
     </b-container>
   </div>
 </template>
@@ -25,7 +25,7 @@
     },
 
     methods:{
-      setCurrent() {
+      /*setCurrent() {
         this.$nextTick(function() {
           let app = this.$el;
           var currents = app.querySelectorAll("[aria-current]");
@@ -60,20 +60,20 @@
       },
       removeClass(element, toRemove) {
         element.className = element.className.replace(new RegExp(" " + toRemove, 'g'), "");
-      }
+      }*/
     },
 
     mounted(){
-      this.setCurrent();
+      //this.setCurrent();
     },
 
-    watch: {
+    /*watch: {
       $route: function(to) {
         this.$nextTick(function() {
           this.setCurrent();
         });
       },
-    },
+    },*/
 
     computed: {
       availableLocales() {
@@ -92,28 +92,30 @@
     .container{
       height: 70px;
 
-      .row{
+      .topbar-row{
         height: 70px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: stretch;
 
-        & > .col-2{
+        a{
+          flex: 0 0 16.6666666667%;
           position: relative;
-
           transition: background-color 0.2s;
 
           &:hover, &:focus{
             background-color: #d0d0d0!important;
             text-decoration: none;
             color: black;
-
-            a{
-              text-decoration: none;
-              color: black;
-            }
+            text-decoration: none;
           }
-          &.active-link{
+          &.nuxt-link-active{
             background-color: #eeeeee;
           }
-          a{
+          &.align-right{
+            margin-left: auto!important;
+          }
+          span{
             margin: 0;
             position: absolute;
             top: 50%;

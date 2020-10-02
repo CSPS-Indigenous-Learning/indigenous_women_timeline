@@ -1,6 +1,6 @@
 <template>
   <b-col cols="12" md="2" class="person">
-    <img :src="require('~/assets/persons/' + info.imgSrc + '.jpg')" :alt="$i18n.locale == 'en' ? 'Image of ' + info.name : 'Image de ' + info.name" @click="toggle" role="tab" :aria-selected="showContentString" tabindex="0">
+    <img :src="require('~/assets/persons/' + info.imgSrc + '.jpg')" :alt="$i18n.locale == 'en' ? 'Image of ' + info.name : 'Image de ' + info.name" @click="toggle" @keypress.enter="toggle" role="tab" :aria-selected="showContentString" tabindex="0">
     <div class="content" v-show="showContent" role="tabpanel" :aria-labelledby="id" :aria-expanded="showContentString" :aria-hidden="showContentStringInverted">
       <h2 :id="id">{{ info.name }} ({{ info.birth }}-{{ info.death }})</h2>
       <span v-html="info.content"></span>
@@ -81,9 +81,9 @@
       display: block;
     }
     .content{
-      width: 100%;
+      width: 80%;
       margin-top: 15px;
-      width: 100%;
+      margin-left: 10%;
 
       @media (min-width: 992px){
         width: 200%;
