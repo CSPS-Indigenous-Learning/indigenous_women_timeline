@@ -1,6 +1,6 @@
 <template>
   <b-col cols="12" md="2" class="person">
-    <img :src="require('~/assets/persons/' + info.imgSrc + '.jpg')" :alt="$i18n.locale == 'en' ? 'Image of ' + info.name : 'Image de ' + info.name" @click="showContent = !showContent" role="tab" :aria-selected="showContentString" tabindex="0">
+    <img :src="require('~/assets/persons/' + info.imgSrc + '.jpg')" :alt="$i18n.locale == 'en' ? 'Image of ' + info.name : 'Image de ' + info.name" @click="toggle" role="tab" :aria-selected="showContentString" tabindex="0">
     <div class="content" v-show="showContent" role="tabpanel" :aria-labelledby="id" :aria-expanded="showContentString" :aria-hidden="showContentStringInverted">
       <h2 :id="id">{{ info.name }} ({{ info.birth }}-{{ info.death }})</h2>
       <span v-html="info.content"></span>
@@ -46,9 +46,16 @@
     },
 
     methods:{
-      method1(){
-        //code
+      close(){
+        this.showContent = false;
       },
+      toggle(){
+        this.showContent = !this.showContent;
+
+        if(this.showContent){
+          this.$emit("open");
+        }
+      }
     },
 
     mounted(){

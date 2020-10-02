@@ -1,23 +1,19 @@
 <template>
-  <b-row>
-    <b-col>
-      <p><nuxt-link :to="localePath('art')">Art</nuxt-link></p>
-      <p><nuxt-link :to="localePath('politics')">Politics</nuxt-link></p>
-    </b-col>
-  </b-row>
+  <timeline :info="art"></timeline>
 </template>
 
 <script>
 
+  import timeline from "~/components/timeline";
 
   export default{
     components: {
-
+      timeline
     },
 
     data(){
       return{
-
+        art: this.$i18n.t('art')
       }
     },
 
