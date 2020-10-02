@@ -90,18 +90,22 @@
     background-color: white;
 
     .container{
-      height: 70px;
+      height: 50px;
 
       .topbar-row{
-        height: 70px;
+        height: 50px;
         display: flex;
         justify-content: flex-start;
         align-items: stretch;
 
         a{
-          flex: 0 0 16.6666666667%;
+          flex: 0 0 25%;
           position: relative;
           transition: background-color 0.2s;
+
+          @media (min-width: 992px){
+            flex: 0 0 16.6666666667%;
+          }
 
           &:hover, &:focus{
             background-color: #d0d0d0!important;
