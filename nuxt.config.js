@@ -83,5 +83,34 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
+    loaders: {
+      rules: [{
+        test: /\.(ico)(\?.*)?$/,
+        loader: 'url-loader',
+        options: {
+          name: '[path][name].[ext]'
+      }
+
+    }]},
+    /*
+     ** You can extend webpack config here
+     */
+    extend(config, ctx) {
+    //    if(!ctx.isDev) {
+    //   config.output.publicPath = '_nuxt/'
+    // }
+      config.module.rules.push({
+        test: /\.(pdf|docx|xlsx)(\?.*)?$/,
+        loader: 'file-loader',
+        options: {
+          name: '[path][name].[ext]'
+        }
+      },{
+        test: /\.(vtt)$/i,
+        use: [{
+          loader: 'file-loader'
+        }]
+      })
+    }
   }
 }

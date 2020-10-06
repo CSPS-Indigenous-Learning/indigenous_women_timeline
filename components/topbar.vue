@@ -9,10 +9,10 @@
         <!--<nuxt-link :to="localePath('art')"><span>{{ $t('art') }}</span></nuxt-link>
         <nuxt-link :to="localePath('politics')"><span>{{ $t('politics') }}</span></nuxt-link>-->
 
-        <a href="#"><span>{{ $t('art') }}</span></a>
-        <a href="#"><span>{{ $t('politics') }}</span></a>
-        <a href="#"><span>{{ $t('something') }}</span></a>
-        <a href="#"><span>{{ $t('something') }}</span></a>
+        <a href="#" :class="isActivated('art', tags) ? 'activated' : ''" @click.prevent="toggleFilter('art', 'tag')" :aria-label="(((!isActivated('art', tags)) ? $t('showTags') : $t('hideTags'))) + $t('art')"><span>{{ $t('artButton') }}</span></a>
+        <a href="#" :class="isActivated('politics', tags) ? 'activated' : ''" @click.prevent="toggleFilter('politics', 'tag')" :aria-label="(((!isActivated('politics', tags)) ? $t('showTags') : $t('hideTags'))) + $t('politics')"><span>{{ $t('politicsButton') }}</span></a>
+        <a href="#" :class="isActivated('something1', tags) ? 'activated' : ''" @click.prevent="toggleFilter('something1', 'tag')" :aria-label="(((!isActivated('something1', tags)) ? $t('showTags') : $t('hideTags'))) + $t('something')"><span>{{ $t('somethingButton') }}</span></a>
+        <a href="#" :class="isActivated('something2', tags) ? 'activated' : ''" @click.prevent="toggleFilter('something2', 'tag')" :aria-label="(((!isActivated('something2', tags)) ? $t('showTags') : $t('hideTags'))) + $t('something')"><span>{{ $t('somethingButton') }}</span></a>
 
         <b-form-input id="filterText" :aria-label="$t('filterTimeline')" :aria-description="$t('filterDesc')" :placeholder="$t('filterTimeline')" v-model="filterText"></b-form-input>
       </div>
@@ -34,61 +34,51 @@
       }
     },
 
-    methods:{
-      /*setCurrent() {
-        this.$nextTick(function() {
-          let app = this.$el;
-          var currents = app.querySelectorAll("[aria-current]");
-          var currentsParents = app.querySelectorAll(".active-link");
-
-          if (currents) {
-            for(var i = 0; i < currents.length; i++){
-              currents[i].removeAttribute("aria-current");
-            }
-          }
-
-          if (currentsParents) {
-            for(var k = 0; k < currentsParents.length; k++){
-              this.removeClass(currentsParents[k], "active-link");
-            }
-          }
-
-          var actives = app.querySelectorAll(".nuxt-link-active");
-
-          for(var j = 0; j < actives.length; j++){
-            actives[j].setAttribute("aria-current", "page");
-            this.addClass(actives[j].parentElement, "active-link");
-          }
-        });
-      },
-      addClass(element, toAdd) {
-        var arr = element.className.split(" ");
-
-        if (arr.indexOf(toAdd) == -1) {
-          element.className += " " + toAdd;
-        }
-      },
-      removeClass(element, toRemove) {
-        element.className = element.className.replace(new RegExp(" " + toRemove, 'g'), "");
-      }*/
-    },
-
-    mounted(){
-      //this.setCurrent();
-    },
-
-    /*watch: {
-      $route: function(to) {
-        this.$nextTick(function() {
-          this.setCurrent();
-        });
-      },
-    },*/
-
     computed: {
       availableLocales() {
         return this.$i18n.locales.filter(i => i.code !== this.$i18n.locale)
+      },
+      tags: {
+        get() {
+          return this.$store.state.filters.tags;
+        }
       }
+    },
+
+    methods:{
+      toggleFilter(filter, type){
+        if(type == "period"){
+          if(this.isActivated(filter, this.periods)){
+            this.$store.commit('filters/removePeriod', filter);
+          }
+          else{
+            this.$store.commit('filters/addPeriod', filter);
+          }
+        }
+        else if(type == "tag"){
+          if(this.isActivated(filter, this.tags)){
+            this.$store.commit('filters/removeTag', filter);
+          }
+          else{
+            this.$store.commit('filters/addTag', filter);
+          }
+        }
+      },
+      isActivated(filter, arr){
+        var activated = false;
+
+        for(var i = 0; i < arr.length; i++){
+          if(arr[i] == filter){
+            activated = true;
+          }
+        }
+
+        return activated;
+      }
+    },
+
+    mounted(){
+
     }
   }
 
@@ -139,13 +129,18 @@
           flex: 0 0 25%;
           position: relative;
           top: 10px;
-          transition: background-color 0.2s;
+          transition: background-color 0.2s, border 0.2s;
           border-radius: 10px;
+          border: 0px solid black;
 
           @media (min-width: 992px){
             flex: 0 0 16.6666666667%;
           }
 
+          &.activated{
+            border: 2px solid black;
+            box-sizing: border-box;
+          }
           &:hover, &:focus{
             text-decoration: none;
             color: black;
@@ -211,21 +206,35 @@
   {
     "en": {
       "title": "Influencal Indigenous Women Timeline",
-      "art": "Women in Art",
-      "politics": "Women in Politics",
-      "something": "Women in something",
+
+      "art": "art",
+      "politics": "politics",
+      "something": "something",
+      "artButton": "Women in Art",
+      "politicsButton": "Women in Politics",
+      "somethingButton": "Women in something",
 
       "filterTimeline": "Filter timeline",
-      "filterDesc": "Enter text or keywords to filter the timeline"
+      "filterDesc": "Enter text or keywords to filter the timeline",
+
+      "showTags": "Show women in the domain of ",
+      "hideTags": "Hide women in the domain of "
     },
     "fr": {
       "title": "Trame historique des femme autochtones influencielles",
-      "art": "Femmes en art",
-      "politics": "Femmes en politique",
-      "something": "Femme en quelque chose",
+
+      "art": "art",
+      "politics": "politique",
+      "something": "quelque chose",
+      "artButton": "Femmes en art",
+      "politicsButton": "Femmes en politique",
+      "somethingButton": "Femme en quelque chose",
 
       "filterTimeline": "Filtrer la ligne de temps",
-      "filterDesc": "Entrer du texte ou des mots clé pour filtrer la ligne de temps"
+      "filterDesc": "Entrer du texte ou des mots clé pour filtrer la ligne de temps",
+
+      "showTags": "Montrer les femmes en ",
+      "hideTags": "Cacher les femmes en "
     }
   }
 

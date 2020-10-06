@@ -10,15 +10,15 @@
         <b-col cols="2">
           <b-row class="filters" align-v="center">
             <!--<b-col cols="12" class="text-center"><a href="#" @click.prevent="filter('all')" :aria-label="$t('showAllYears')">{{ $t('all') }}</a></b-col>-->
-            <b-col cols="12" class="text-center"><a href="#" :class="isActivated('1600', periods) ? 'activated' : ''" @click.prevent="toggleFilter('1600', periods)" :aria-label="$t('filterYears') + '1600' + (($i18n.locale=='en') ? '\'s' : '')">1600</a></b-col>
-            <b-col cols="12" class="text-center"><a href="#" :class="isActivated('1700', periods) ? 'activated' : ''" @click.prevent="toggleFilter('1700', periods)" :aria-label="$t('filterYears') + '1700' + (($i18n.locale=='en') ? '\'s' : '')">1700</a></b-col>
-            <b-col cols="12" class="text-center"><a href="#" :class="isActivated('1800', periods) ? 'activated' : ''" @click.prevent="toggleFilter('1800', periods)" :aria-label="$t('filterYears') + '1800' + (($i18n.locale=='en') ? '\'s' : '')">1800</a></b-col>
-            <b-col cols="12" class="text-center"><a href="#" :class="isActivated('1900', periods) ? 'activated' : ''" @click.prevent="toggleFilter('1900', periods)" :aria-label="$t('filterYears') + '1900' + (($i18n.locale=='en') ? '\'s' : '')">1900</a></b-col>
-            <b-col cols="12" class="text-center"><a href="#" :class="isActivated('1920', periods) ? 'activated' : ''" @click.prevent="toggleFilter('1920', periods)" :aria-label="$t('filterYears') + '1920' + (($i18n.locale=='en') ? '\'s' : '')">1920</a></b-col>
-            <b-col cols="12" class="text-center"><a href="#" :class="isActivated('1940', periods) ? 'activated' : ''" @click.prevent="toggleFilter('1940', periods)" :aria-label="$t('filterYears') + '1940' + (($i18n.locale=='en') ? '\'s' : '')">1940</a></b-col>
-            <b-col cols="12" class="text-center"><a href="#" :class="isActivated('1960', periods) ? 'activated' : ''" @click.prevent="toggleFilter('1960', periods)" :aria-label="$t('filterYears') + '1960' + (($i18n.locale=='en') ? '\'s' : '')">1960</a></b-col>
-            <b-col cols="12" class="text-center"><a href="#" :class="isActivated('1980', periods) ? 'activated' : ''" @click.prevent="toggleFilter('1980', periods)" :aria-label="$t('filterYears') + '1980' + (($i18n.locale=='en') ? '\'s' : '')">1980</a></b-col>
-            <b-col cols="12" class="text-center"><a href="#" :class="isActivated('2000', periods) ? 'activated' : ''" @click.prevent="toggleFilter('2000', periods)" :aria-label="$t('filterYears') + '2000' + (($i18n.locale=='en') ? '\'s' : '')">2000</a></b-col>
+            <b-col cols="12" class="text-center"><a href="#" :class="isActivated('1600', periods) ? 'activated' : ''" @click.prevent="toggleFilter('1600', 'period')" :aria-label="((!isActivated('1600', periods)) ? $t('showYears') : $t('hideYears')) + '1600' + (($i18n.locale=='en') ? '\'s' : '')">1600</a></b-col>
+            <b-col cols="12" class="text-center"><a href="#" :class="isActivated('1700', periods) ? 'activated' : ''" @click.prevent="toggleFilter('1700', 'period')" :aria-label="((!isActivated('1700', periods)) ? $t('showYears') : $t('hideYears')) + '1700' + (($i18n.locale=='en') ? '\'s' : '')">1700</a></b-col>
+            <b-col cols="12" class="text-center"><a href="#" :class="isActivated('1800', periods) ? 'activated' : ''" @click.prevent="toggleFilter('1800', 'period')" :aria-label="((!isActivated('1800', periods)) ? $t('showYears') : $t('hideYears')) + '1800' + (($i18n.locale=='en') ? '\'s' : '')">1800</a></b-col>
+            <b-col cols="12" class="text-center"><a href="#" :class="isActivated('1900', periods) ? 'activated' : ''" @click.prevent="toggleFilter('1900', 'period')" :aria-label="((!isActivated('1900', periods)) ? $t('showYears') : $t('hideYears')) + '1900' + (($i18n.locale=='en') ? '\'s' : '')">1900</a></b-col>
+            <b-col cols="12" class="text-center"><a href="#" :class="isActivated('1920', periods) ? 'activated' : ''" @click.prevent="toggleFilter('1920', 'period')" :aria-label="((!isActivated('1920', periods)) ? $t('showYears') : $t('hideYears')) + '1920' + (($i18n.locale=='en') ? '\'s' : '')">1920</a></b-col>
+            <b-col cols="12" class="text-center"><a href="#" :class="isActivated('1940', periods) ? 'activated' : ''" @click.prevent="toggleFilter('1940', 'period')" :aria-label="((!isActivated('1940', periods)) ? $t('showYears') : $t('hideYears')) + '1940' + (($i18n.locale=='en') ? '\'s' : '')">1940</a></b-col>
+            <b-col cols="12" class="text-center"><a href="#" :class="isActivated('1960', periods) ? 'activated' : ''" @click.prevent="toggleFilter('1960', 'period')" :aria-label="((!isActivated('1960', periods)) ? $t('showYears') : $t('hideYears')) + '1960' + (($i18n.locale=='en') ? '\'s' : '')">1960</a></b-col>
+            <b-col cols="12" class="text-center"><a href="#" :class="isActivated('1980', periods) ? 'activated' : ''" @click.prevent="toggleFilter('1980', 'period')" :aria-label="((!isActivated('1980', periods)) ? $t('showYears') : $t('hideYears')) + '1980' + (($i18n.locale=='en') ? '\'s' : '')">1980</a></b-col>
+            <b-col cols="12" class="text-center"><a href="#" :class="isActivated('2000', periods) ? 'activated' : ''" @click.prevent="toggleFilter('2000', 'period')" :aria-label="((!isActivated('2000', periods)) ? $t('showYears') : $t('hideYears')) + '2000' + (($i18n.locale=='en') ? '\'s' : '')">2000</a></b-col>
             <!--<b-col cols="3">
               <b-form-input id="filterText" :aria-label="$t('filterTimeline')" :aria-description="$t('filterDesc')" :placeholder="$t('filterTimeline')" v-model="filterText"></b-form-input>
             </b-col>-->
@@ -26,15 +26,17 @@
         </b-col>
         <b-col>
           <transition-group name="timeline-fade" tag="div" class="row">
-            <person v-if="isActivated('1600', periods) && checkFilterText(person)" v-for="person, index in persons1600" :info="person" :id="'1600_' + index" :key="'1600_' + index" @open="closeAllOthers(person)" :ref="'person1600_' + index"></person>
-            <person v-if="isActivated('1700', periods) && checkFilterText(person)" v-for="person, index in persons1700" :info="person" :id="'1700_' + index" :key="'1700_' + index" @open="closeAllOthers(person)" :ref="'person1700_' + index"></person>
-            <person v-if="isActivated('1800', periods) && checkFilterText(person)" v-for="person, index in persons1800" :info="person" :id="'1800_' + index" :key="'1800_' + index" @open="closeAllOthers(person)" :ref="'person1800_' + index"></person>
-            <person v-if="isActivated('1900', periods) && checkFilterText(person)" v-for="person, index in persons1900" :info="person" :id="'1900_' + index" :key="'1900_' + index" @open="closeAllOthers(person)" :ref="'person1900_' + index"></person>
-            <person v-if="isActivated('1920', periods) && checkFilterText(person)" v-for="person, index in persons1920" :info="person" :id="'1920_' + index" :key="'1920_' + index" @open="closeAllOthers(person)" :ref="'person1920_' + index"></person>
-            <person v-if="isActivated('1940', periods) && checkFilterText(person)" v-for="person, index in persons1940" :info="person" :id="'1940_' + index" :key="'1940_' + index" @open="closeAllOthers(person)" :ref="'person1940_' + index"></person>
-            <person v-if="isActivated('1960', periods) && checkFilterText(person)" v-for="person, index in persons1960" :info="person" :id="'1960_' + index" :key="'1960_' + index" @open="closeAllOthers(person)" :ref="'person1960_' + index"></person>
-            <person v-if="isActivated('1980', periods) && checkFilterText(person)" v-for="person, index in persons1980" :info="person" :id="'1980_' + index" :key="'1980_' + index" @open="closeAllOthers(person)" :ref="'person1980_' + index"></person>
-            <person v-if="isActivated('2000', periods) && checkFilterText(person)" v-for="person, index in persons2000" :info="person" :id="'2000_' + index" :key="'2000_' + index" @open="closeAllOthers(person)" :ref="'person2000_' + index"></person>
+            <person v-if="isActivated('1600', periods) && checkTags(person) && checkFilterText(person)" v-for="person, index in persons1600" :info="person" :id="'1600_' + index" :key="'1600_' + index" @open="closeAllOthers(person)" :ref="'person1600_' + index"></person>
+            <person v-if="isActivated('1700', periods) && checkTags(person) && checkFilterText(person)" v-for="person, index in persons1700" :info="person" :id="'1700_' + index" :key="'1700_' + index" @open="closeAllOthers(person)" :ref="'person1700_' + index"></person>
+            <person v-if="isActivated('1800', periods) && checkTags(person) && checkFilterText(person)" v-for="person, index in persons1800" :info="person" :id="'1800_' + index" :key="'1800_' + index" @open="closeAllOthers(person)" :ref="'person1800_' + index"></person>
+            <person v-if="isActivated('1900', periods) && checkTags(person) && checkFilterText(person)" v-for="person, index in persons1900" :info="person" :id="'1900_' + index" :key="'1900_' + index" @open="closeAllOthers(person)" :ref="'person1900_' + index"></person>
+            <person v-if="isActivated('1920', periods) && checkTags(person) && checkFilterText(person)" v-for="person, index in persons1920" :info="person" :id="'1920_' + index" :key="'1920_' + index" @open="closeAllOthers(person)" :ref="'person1920_' + index"></person>
+            <person v-if="isActivated('1940', periods) && checkTags(person) && checkFilterText(person)" v-for="person, index in persons1940" :info="person" :id="'1940_' + index" :key="'1940_' + index" @open="closeAllOthers(person)" :ref="'person1940_' + index"></person>
+            <person v-if="isActivated('1960', periods) && checkTags(person) && checkFilterText(person)" v-for="person, index in persons1960" :info="person" :id="'1960_' + index" :key="'1960_' + index" @open="closeAllOthers(person)" :ref="'person1960_' + index"></person>
+            <person v-if="isActivated('1980', periods) && checkTags(person) && checkFilterText(person)" v-for="person, index in persons1980" :info="person" :id="'1980_' + index" :key="'1980_' + index" @open="closeAllOthers(person)" :ref="'person1980_' + index"></person>
+            <person v-if="isActivated('2000', periods) && checkTags(person) && checkFilterText(person)" v-for="person, index in persons2000" :info="person" :id="'2000_' + index" :key="'2000_' + index" @open="closeAllOthers(person)" :ref="'person2000_' + index"></person>
+
+            <p v-if="periods == [] || tags == []"></p>
           </transition-group>
         </b-col>
       </b-row>
@@ -65,36 +67,63 @@
         persons1940: Object.values(this.info.d1940),
         persons1960: Object.values(this.info.d1960),
         persons1980: Object.values(this.info.d1980),
-        persons2000: Object.values(this.info.d2000),
+        persons2000: Object.values(this.info.d2000)
+      }
+    },
 
-        periods: []
+    computed: {
+      periods: {
+        get() {
+          return this.$store.state.filters.periods;
+        }
+      },
+      tags: {
+        get() {
+          return this.$store.state.filters.tags;
+        }
       }
     },
 
     methods:{
-      toggleFilter(period, arr){
-        if(this.isActivated(period, arr)){
-          for(var i = 0; i < arr.length; i++){
-            if(arr[i] === period){
-              arr.splice(i, 1);
-              i--;
-            }
+      toggleFilter(filter, type){
+        if(type == "period"){
+          if(this.isActivated(filter, this.periods)){
+            this.$store.commit('filters/removePeriod', filter);
+          }
+          else{
+            this.$store.commit('filters/addPeriod', filter);
           }
         }
-        else{
-          this.periods.push(period);
+        else if(type == "tag"){
+          if(this.isActivated(filter, this.tags)){
+            this.$store.commit('filters/removeTag', filter);
+          }
+          else{
+            this.$store.commit('filters/addTag', filter);
+          }
         }
       },
-      isActivated(period, arr){
+      isActivated(filter, arr){
         var activated = false;
 
         for(var i = 0; i < arr.length; i++){
-          if(arr[i] == period){
+          if(arr[i] == filter){
             activated = true;
           }
         }
 
         return activated;
+      },
+      checkTags(person){
+        var check = false;
+
+        for(var i = 0; i < person.tags.length; i++){
+          if(this.isActivated(person.tags[i], this.tags)){
+            check = true;
+          }
+        }
+
+        return check;
       },
       checkFilterText(info){
         if(this.$refs.topbar.filterText == "" || info.name.indexOf(this.$refs.topbar.filterText) >= 0 || info.birth.indexOf(this.$refs.topbar.filterText) >= 0 || info.death.indexOf(this.$refs.topbar.filterText) >= 0 || info.content.indexOf(this.$refs.topbar.filterText) >= 0){
@@ -164,12 +193,14 @@
     "en": {
       "showAllYears": "Show all women",
       "all": "All",
-      "filterYears": "Show women born in the "
+      "showYears": "Show women born in the ",
+      "hideYears": "Hide women born in the "
     },
     "fr": {
       "showAllYears": "Montrer toutes les femmes",
       "all": "Tout",
-      "filterYears": "Montrer les femmes nées dans les années "
+      "showYears": "Montrer les femmes nées dans les années ",
+      "hideYears": "Cacher les femmes nées dans les années "
     }
   }
 
