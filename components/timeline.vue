@@ -104,7 +104,6 @@
           return false;
         }
       },
-
       closeAllOthers(info){
         var refs = Object.values(this.$refs)
 
@@ -134,7 +133,7 @@
   }
 
   .timeline-fade-leave-active {
-    //position: absolute;
+    position: absolute;
   }
 
   .filters{
