@@ -133,6 +133,7 @@
         input{
           flex: 0 0 25%;
           margin-left: auto;
+          align-self: center;
         }
         a{
           flex: 0 0 25%;
