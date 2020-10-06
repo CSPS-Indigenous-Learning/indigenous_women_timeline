@@ -1,10 +1,20 @@
 <template>
   <div class="topbar">
     <b-container>
-      <div class="topbar-row">
-        <nuxt-link :to="localePath('art')"><span>{{ $t('art') }}</span></nuxt-link>
-        <nuxt-link :to="localePath('politics')"><span>{{ $t('politics') }}</span></nuxt-link>
-        <nuxt-link v-for="locale in availableLocales" :key="locale.code" :to="switchLocalePath(locale.code)" class="align-right"><span>{{ locale.name }}</span></nuxt-link>
+      <b-row>
+        <b-col cols="10" offset="1" class="text-center"><h1>{{ $t('title') }}</h1></b-col>
+        <b-col cols="1" class="text-right" align-self="end"><nuxt-link v-for="locale in availableLocales" :key="locale.code" :to="switchLocalePath(locale.code)" class="align-right langswitch"><span>{{ locale.name }}</span></nuxt-link></b-col>
+      </b-row>
+      <div class="topbar-filters">
+        <!--<nuxt-link :to="localePath('art')"><span>{{ $t('art') }}</span></nuxt-link>
+        <nuxt-link :to="localePath('politics')"><span>{{ $t('politics') }}</span></nuxt-link>-->
+
+        <a href="#"><span>{{ $t('art') }}</span></a>
+        <a href="#"><span>{{ $t('politics') }}</span></a>
+        <a href="#"><span>{{ $t('something') }}</span></a>
+        <a href="#"><span>{{ $t('something') }}</span></a>
+
+        <b-form-input id="filterText" :aria-label="$t('filterTimeline')" :aria-description="$t('filterDesc')" :placeholder="$t('filterTimeline')" v-model="filterText"></b-form-input>
       </div>
     </b-container>
   </div>
@@ -20,7 +30,7 @@
 
     data(){
       return{
-        art: this.$i18n.t('art')
+        filterText: ""
       }
     },
 
@@ -86,39 +96,96 @@
 
 <style scoped lang="scss">
 
+  //Colors
+  $dark_purple: #713e5a;
+  $light_purple: #94778b;
+  $lavender: #c6d4ff;
+  $green: #caff8a;
+  $beige: #f9e0c8;
+
   .topbar{
     background-color: white;
 
     .container{
-      height: 50px;
+      //height: 100px;
 
-      .topbar-row{
+      h1{
+        font-family: "Merienda";
+        font-weight: 700;
+        font-size: 30px;
+        margin-top: 15px;
+      }
+      a.langswitch{
+        color: black;
+        text-decoration: none;
+
+        &:hover, &:focus{
+          opacity: 0.7;
+          text-decoration: none;
+        }
+      }
+      .topbar-filters{
         height: 50px;
         display: flex;
         justify-content: flex-start;
         align-items: stretch;
 
+        input{
+          flex: 0 0 25%;
+          margin-left: auto;
+        }
         a{
           flex: 0 0 25%;
           position: relative;
+          top: 10px;
           transition: background-color 0.2s;
+          border-radius: 10px;
 
           @media (min-width: 992px){
             flex: 0 0 16.6666666667%;
           }
 
           &:hover, &:focus{
-            background-color: #d0d0d0!important;
             text-decoration: none;
             color: black;
-            text-decoration: none;
           }
-          &.nuxt-link-active{
+          &:nth-child(1){
+            background-color: $dark_purple;
+
+            span{
+              color: white!important;
+            }
+            &:hover, &:focus{
+              background-color: lighten($dark_purple, 7%);
+            }
+          }
+          &:nth-child(2){
+            background-color: $lavender;
+
+            &:hover, &:focus{
+              background-color: lighten($lavender, 3%);
+            }
+          }
+          &:nth-child(3){
+            background-color: $green;
+
+            &:hover, &:focus{
+              background-color: lighten($green, 5%);
+            }
+          }
+          &:nth-child(4){
+            background-color: $beige;
+
+            &:hover, &:focus{
+              background-color: lighten($beige, 3%);
+            }
+          }
+          /*&.nuxt-link-active{
             background-color: #eeeeee;
           }
           &.align-right{
             margin-left: auto!important;
-          }
+          }*/
           span{
             margin: 0;
             position: absolute;
@@ -127,6 +194,9 @@
             transform: translate(-50%, -50%);
             text-decoration: none;
             color: black;
+            text-align: center;
+            line-height: 1.1;
+            font-size: 15px;
           }
         }
       }
@@ -139,12 +209,22 @@
 
   {
     "en": {
-      "art": "Art",
-      "politics": "Politics"
+      "title": "Influencal Indigenous Women Timeline",
+      "art": "Women in Art",
+      "politics": "Women in Politics",
+      "something": "Women in something",
+
+      "filterTimeline": "Filter timeline",
+      "filterDesc": "Enter text or keywords to filter the timeline"
     },
     "fr": {
-      "art": "Art",
-      "politics": "Politique"
+      "title": "Trame historique des femme autochtones influencielles",
+      "art": "Femmes en art",
+      "politics": "Femmes en politique",
+      "something": "Femme en quelque chose",
+
+      "filterTimeline": "Filtrer la ligne de temps",
+      "filterDesc": "Entrer du texte ou des mots clé pour filtrer la ligne de temps"
     }
   }
 
