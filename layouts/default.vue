@@ -16,6 +16,14 @@
   import topbar from "~/components/topbar";
 
   export default{
+
+    head() {
+      return {
+        htmlAttrs: { lang: this.$i18n.locale },
+        title: (this.$i18n.locale=="en") ? "Influencal Indigenous Women Timeline" : "Trame historique des femme autochtones influencielles"
+      }
+    },
+
     components: {
       topbar
     },
