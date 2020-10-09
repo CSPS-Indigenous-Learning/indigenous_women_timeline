@@ -14,7 +14,15 @@ export default {
       { hid: 'description', name: 'description', content: '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+    ],
+    script: [
+      {
+        src: "https://code.jquery.com/jquery-3.5.1.min.js",
+        type: "text/javascript",
+        integrity: "sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=",
+        crossorigin: "anonymous"
+      }
     ]
   },
 

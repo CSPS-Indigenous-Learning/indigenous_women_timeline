@@ -9,10 +9,12 @@
         <!--<nuxt-link :to="localePath('art')"><span>{{ $t('art') }}</span></nuxt-link>
         <nuxt-link :to="localePath('politics')"><span>{{ $t('politics') }}</span></nuxt-link>-->
 
-        <a href="#" :class="isActivated('art', tags) ? 'activated' : ''" @click.prevent="toggleFilter('art', 'tag')" :aria-label="(((!isActivated('art', tags)) ? $t('showTags') : $t('hideTags'))) + $t('art')"><span>{{ $t('artButton') }}</span></a>
-        <a href="#" :class="isActivated('politics', tags) ? 'activated' : ''" @click.prevent="toggleFilter('politics', 'tag')" :aria-label="(((!isActivated('politics', tags)) ? $t('showTags') : $t('hideTags'))) + $t('politics')"><span>{{ $t('politicsButton') }}</span></a>
-        <a href="#" :class="isActivated('something1', tags) ? 'activated' : ''" @click.prevent="toggleFilter('something1', 'tag')" :aria-label="(((!isActivated('something1', tags)) ? $t('showTags') : $t('hideTags'))) + $t('something')"><span>{{ $t('somethingButton') }}</span></a>
-        <a href="#" :class="isActivated('something2', tags) ? 'activated' : ''" @click.prevent="toggleFilter('something2', 'tag')" :aria-label="(((!isActivated('something2', tags)) ? $t('showTags') : $t('hideTags'))) + $t('something')"><span>{{ $t('somethingButton') }}</span></a>
+        <div class="topbar-buttons">
+          <a href="#" :class="isActivated('art', tags) ? 'activated' : ''" @click.prevent="toggleFilter('art', 'tag')" :aria-label="(((!isActivated('art', tags)) ? $t('showTags') : $t('hideTags'))) + $t('art')"><span>{{ $t('artButton') }}</span></a>
+          <a href="#" :class="isActivated('politics', tags) ? 'activated' : ''" @click.prevent="toggleFilter('politics', 'tag')" :aria-label="(((!isActivated('politics', tags)) ? $t('showTags') : $t('hideTags'))) + $t('politics')"><span>{{ $t('politicsButton') }}</span></a>
+          <a href="#" :class="isActivated('something1', tags) ? 'activated' : ''" @click.prevent="toggleFilter('something1', 'tag')" :aria-label="(((!isActivated('something1', tags)) ? $t('showTags') : $t('hideTags'))) + $t('something')"><span>{{ $t('somethingButton') }}</span></a>
+          <a href="#" :class="isActivated('something2', tags) ? 'activated' : ''" @click.prevent="toggleFilter('something2', 'tag')" :aria-label="(((!isActivated('something2', tags)) ? $t('showTags') : $t('hideTags'))) + $t('something')"><span>{{ $t('somethingButton') }}</span></a>
+        </div>
 
         <b-form-input id="filterText" :aria-label="$t('filterTimeline')" :aria-description="$t('filterDesc')" :placeholder="$t('filterTimeline')" v-model="filterText"></b-form-input>
       </div>
@@ -115,84 +117,104 @@
         }
       }
       .topbar-filters{
-        height: 50px;
         display: flex;
         justify-content: flex-start;
         align-items: stretch;
 
         input{
-          flex: 0 0 25%;
+          flex: 0 0 45%;
           margin-left: auto;
           align-self: center;
+
+          @media (min-width: 768px){
+            flex: 0 0 20%;
+          }
         }
-        a{
-          flex: 0 0 25%;
+        .topbar-buttons{
+          display: flex;
+          justify-content: flex-start;
+          flex-wrap: wrap;
+          align-items: stretch;
           position: relative;
           top: 10px;
-          transition: background-color 0.2s, border 0.2s;
-          border-radius: 10px;
-          border: 0px solid black;
+          flex: 0 0 50%;
 
-          @media (min-width: 992px){
-            flex: 0 0 16.6666666667%;
+          @media (min-width: 768px){
+            flex: 0 0 75%;
           }
 
-          &.activated{
-            border: 2px solid black;
-            box-sizing: border-box;
-          }
-          &:hover, &:focus{
-            text-decoration: none;
-            color: black;
-          }
-          &:nth-child(1){
-            background-color: $dark_purple;
+          a{
+            flex: 0 0 100%;
+            height: 50px;
+            position: relative;
+            transition: background-color 0.2s, border 0.2s;
+            border-radius: 10px;
+            border: 0px solid black;
 
+            @media (min-width: 768px){
+              flex: 0 0 50%;
+            }
+            @media (min-width: 992px){
+              flex: 0 0 25%;
+            }
+
+            &.activated{
+              border: 2px solid black;
+              box-sizing: border-box;
+            }
+            &:hover, &:focus{
+              text-decoration: none;
+              color: black;
+            }
+            &:nth-child(1){
+              background-color: $dark_purple;
+
+              span{
+                color: white!important;
+              }
+              &:hover, &:focus{
+                background-color: lighten($dark_purple, 7%);
+              }
+            }
+            &:nth-child(2){
+              background-color: $lavender;
+
+              &:hover, &:focus{
+                background-color: lighten($lavender, 3%);
+              }
+            }
+            &:nth-child(3){
+              background-color: $green;
+
+              &:hover, &:focus{
+                background-color: lighten($green, 5%);
+              }
+            }
+            &:nth-child(4){
+              background-color: $beige;
+
+              &:hover, &:focus{
+                background-color: lighten($beige, 3%);
+              }
+            }
+            /*&.nuxt-link-active{
+              background-color: #eeeeee;
+            }
+            &.align-right{
+              margin-left: auto!important;
+            }*/
             span{
-              color: white!important;
+              margin: 0;
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              text-decoration: none;
+              color: black;
+              text-align: center;
+              line-height: 1.1;
+              font-size: 15px;
             }
-            &:hover, &:focus{
-              background-color: lighten($dark_purple, 7%);
-            }
-          }
-          &:nth-child(2){
-            background-color: $lavender;
-
-            &:hover, &:focus{
-              background-color: lighten($lavender, 3%);
-            }
-          }
-          &:nth-child(3){
-            background-color: $green;
-
-            &:hover, &:focus{
-              background-color: lighten($green, 5%);
-            }
-          }
-          &:nth-child(4){
-            background-color: $beige;
-
-            &:hover, &:focus{
-              background-color: lighten($beige, 3%);
-            }
-          }
-          /*&.nuxt-link-active{
-            background-color: #eeeeee;
-          }
-          &.align-right{
-            margin-left: auto!important;
-          }*/
-          span{
-            margin: 0;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-decoration: none;
-            color: black;
-            text-align: center;
-            line-height: 1.1;
-            font-size: 15px;
           }
         }
       }

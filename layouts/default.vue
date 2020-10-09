@@ -42,56 +42,6 @@
   $green: #caff8a;
   $beige: #f9e0c8;
 
-  //Fonts
-  @font-face{
-    font-family: "Merienda";
-    font-weight: 700;
-    font-style: normal;
-    src: url("~assets/fonts/Merienda/Merienda-Bold.ttf");
-  }
-
-  @font-face{
-    font-family: "Titillium Web";
-    font-weight: 500;
-    font-style: normal;
-    src: url("~assets/fonts/Titillium_Web/TitilliumWeb-Regular.ttf");
-  }
-
-  @font-face{
-    font-family: "Titillium Web";
-    font-weight: 500;
-    font-style: italic;
-    src: url("~assets/fonts/Titillium_Web/TitilliumWeb-Italic.ttf");
-  }
-
-  @font-face{
-    font-family: "Titillium Web";
-    font-weight: 600;
-    font-style: normal;
-    src: url("~assets/fonts/Titillium_Web/TitilliumWeb-SemiBold.ttf");
-  }
-
-  @font-face{
-    font-family: "Titillium Web";
-    font-weight: 600;
-    font-style: italic;
-    src: url("~assets/fonts/Titillium_Web/TitilliumWeb-SemiBoldItalic.ttf");
-  }
-
-  @font-face{
-    font-family: "Titillium Web";
-    font-weight: 700;
-    font-style: normal;
-    src: url("~assets/fonts/Titillium_Web/TitilliumWeb-Bold.ttf");
-  }
-
-  @font-face{
-    font-family: "Titillium Web";
-    font-weight: 700;
-    font-style: italic;
-    src: url("~assets/fonts/Titillium_Web/TitilliumWeb-BoldItalic.ttf");
-  }
-
   html, body{
     margin: 0;
     padding: 0;
@@ -99,6 +49,7 @@
 
   body{
     background: url("~assets/background.jpg");
+    background-attachment: fixed;
     font-family: "Titillium Web";
     font-weight: 500;
   }

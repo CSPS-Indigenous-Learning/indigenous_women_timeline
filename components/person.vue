@@ -1,5 +1,5 @@
 <template>
-  <b-col cols="12" md="2" class="person">
+  <b-col cols="12" lg="2" class="person">
     <img :src="require('~/assets/persons/' + info.imgSrc + '.jpg')" :alt="$i18n.locale == 'en' ? 'Image of ' + info.name : 'Image de ' + info.name" @click="toggle" @keypress.enter="toggle" role="tab" :aria-selected="showContentString" tabindex="0">
     <transition name="timeline-content">
       <div class="content" v-show="showContent" role="tabpanel" :aria-labelledby="id" :aria-expanded="showContentString" :aria-hidden="showContentStringInverted">
@@ -82,6 +82,16 @@
       border-radius: 50%;
       margin: auto;
       display: block;
+
+      transform: scale(1);
+      box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.1);
+
+      transition: transform 0.4s, box-shadow 0.4s;
+
+      &:hover, &:focus{
+        transform: scale(0.95);
+        box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+      }
     }
     .content{
       width: 80%;
@@ -101,6 +111,12 @@
         width: 250%;
         position: relative;
         left: -75%;
+        margin-left: 0;
+      }
+      @media (min-width: 1200px){
+        width: 300%;
+        position: relative;
+        left: -100%;
         margin-left: 0;
       }
       &:before{
