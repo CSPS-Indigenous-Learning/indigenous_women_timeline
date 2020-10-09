@@ -3,7 +3,7 @@
     <b-container>
       <b-row>
         <b-col cols="10" offset="1" class="text-center"><h1>{{ $t('title') }}</h1></b-col>
-        <b-col cols="1" class="text-right" align-self="end"><nuxt-link v-for="locale in availableLocales" :key="locale.code" :to="switchLocalePath(locale.code)" class="align-right langswitch"><span>{{ locale.name }}</span></nuxt-link></b-col>
+        <b-col cols="1" class="text-right" align-self="end"><nuxt-link v-for="locale in availableLocales" :key="locale.code" :to="switchLocalePath(locale.code)" class="align-right langswitch" :lang="locale.code"><span>{{ locale.name }}</span></nuxt-link></b-col>
       </b-row>
       <div class="topbar-filters">
         <!--<nuxt-link :to="localePath('art')"><span>{{ $t('art') }}</span></nuxt-link>
