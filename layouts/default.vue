@@ -66,6 +66,15 @@
     font-weight: 700;
   }
 
+  .v-inv {
+    clip: rect(1px, 1px, 1px, 1px);
+    height: 1px;
+    margin: 0;
+    overflow: hidden;
+    position: absolute;
+    width: 1px;
+  }
+
 </style>
 
 <i18n>
