@@ -227,7 +227,7 @@
 
   {
     "en": {
-      "title": "Influencal Indigenous Women Timeline",
+      "title": "Influencial Indigenous Women Timeline",
 
       "art": "art",
       "politics": "politics",
@@ -243,7 +243,7 @@
       "hideTags": "Hide women in the domain of "
     },
     "fr": {
-      "title": "Trame historique des femme autochtones influencielles",
+      "title": "Trame historique des femme autochtones influentes",
 
       "art": "art",
       "politics": "politique",
