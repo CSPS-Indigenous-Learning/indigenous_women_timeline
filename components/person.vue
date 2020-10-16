@@ -1,8 +1,12 @@
 <template>
   <b-col cols="12" lg="2" class="person">
-    <img :src="require('~/assets/persons/' + info.imgSrc + '.jpg')" :alt="$i18n.locale == 'en' ? 'Image of ' + info.name : 'Image de ' + info.name" @click="toggle" @keypress.enter="toggle" role="tab" :aria-selected="showContentString" tabindex="0" v-b-tooltip.top.hover.focus.html="info.name + ' (' + info.birth + '-' + info.death + ') ' + $t('selectToExpand')">
+    <a href="#" @click.prevent="toggle" @keypress.enter.prevent="toggle" role="tab" :aria-selected="showContentString" tabindex="0" class="text-center" :aria-labelledby="id + '_name'">
+      <img :src="require('~/assets/persons/' + info.imgSrc + '.jpg')" alt="">
+      <!--<img :src="require('~/assets/persons/' + info.imgSrc + '.jpg')" :alt="$i18n.locale == 'en' ? 'Image of ' + info.name : 'Image de ' + info.name" v-b-tooltip.top.hover.focus.html="info.name + ' (' + info.birth + '-' + info.death + ') ' + $t('selectToExpand')">-->
+      <span :id="id + '_name'">{{ info.name }} ({{ info.birth }}-{{ info.death }})</span>
+    </a>
     <transition name="timeline-content">
-      <div class="content" v-show="showContent" role="tabpanel" :aria-labelledby="id" :aria-expanded="showContentString" :aria-hidden="showContentStringInverted">
+      <div class="content" v-show="showContent" role="tabpanel" :aria-label="info.name + $t('pressEsc')" :aria-expanded="showContentString" :aria-hidden="showContentStringInverted" tabindex="0" @keydown.esc="close">
         <h2 :id="id">{{ info.name }} ({{ info.birth }}-{{ info.death }})</h2>
         <span v-html="info.content"></span>
       </div>
@@ -56,6 +60,11 @@
 
         if(this.showContent){
           this.$emit("open");
+
+          var that = this;
+          setTimeout(function(){
+            $(that.$el).find(".content")[0].focus();
+          }, 510);
         }
       }
     },
@@ -76,21 +85,34 @@
 
     transition: all 0.7s;
 
-    img{
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      margin: auto;
+    a{
+      text-align: center;
       display: block;
+      color: black;
+      text-decoration: none;
+      padding-left: 5px;
+      padding-right: 5px;
 
       transform: scale(1);
-      box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.1);
-
       transition: transform 0.4s, box-shadow 0.4s;
 
       &:hover, &:focus{
+        text-decoration: none;
         transform: scale(0.95);
-        box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+
+        img{
+          box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+        }
+      }
+
+      img{
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin: auto;
+        display: block;
+
+        box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.1);
       }
     }
     .content{
@@ -149,10 +171,12 @@
 
   {
     "en": {
-      "selectToExpand" : "<span class='v-inv'>(select the image to get more information about this woman)</span>"
+      "selectToExpand" : "<span class='v-inv'>(select the image to get more information about this woman)</span>",
+      "pressEsc": " (press the escape key to close)"
     },
     "fr": {
-      "selectToExpand" : "<span class='v-inv'>(sélectionnez l'image pour obtenir plus d'information à propos de cette femme)</span>"
+      "selectToExpand" : "<span class='v-inv'>(sélectionnez l'image pour obtenir plus d'information à propos de cette femme)</span>",
+      "pressEsc": " (appuyez sur la touche d'échappement pour fermer)"
     }
   }
 
