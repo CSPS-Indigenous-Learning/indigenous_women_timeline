@@ -16,6 +16,14 @@
   import topbar from "~/components/topbar";
 
   export default{
+
+    head() {
+      return {
+        htmlAttrs: { lang: this.$i18n.locale },
+        title: (this.$i18n.locale=="en") ? "Influencial Indigenous Women Timeline" : "Trame historique des femme autochtones influentes"
+      }
+    },
+
     components: {
       topbar
     },
@@ -36,11 +44,11 @@
 <style lang="scss">
 
   //Colors
-  $dark_purple: #713e5a;
-  $light_purple: #94778b;
-  $lavender: #c6d4ff;
-  $green: #caff8a;
   $beige: #f9e0c8;
+  $blue: #10A5E5;
+  $orange: #FF670F;
+  $red: #891111;
+  $green: #175A07;
 
   html, body{
     margin: 0;
@@ -48,7 +56,7 @@
   }
 
   body{
-    background: url("~assets/background.jpg");
+    background: url("~assets/background2.jpg");
     background-attachment: fixed;
     font-family: "Titillium Web";
     font-weight: 500;
@@ -56,6 +64,15 @@
 
   h1, h2, h3, h4, h5, h6{
     font-weight: 700;
+  }
+
+  .v-inv {
+    clip: rect(1px, 1px, 1px, 1px);
+    height: 1px;
+    margin: 0;
+    overflow: hidden;
+    position: absolute;
+    width: 1px;
   }
 
 </style>

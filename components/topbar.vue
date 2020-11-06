@@ -3,7 +3,7 @@
     <b-container>
       <b-row>
         <b-col cols="10" offset="1" class="text-center"><h1>{{ $t('title') }}</h1></b-col>
-        <b-col cols="1" class="text-right" align-self="end"><nuxt-link v-for="locale in availableLocales" :key="locale.code" :to="switchLocalePath(locale.code)" class="align-right langswitch"><span>{{ locale.name }}</span></nuxt-link></b-col>
+        <b-col cols="1" class="text-right" align-self="end"><nuxt-link v-for="locale in availableLocales" :key="locale.code" :to="switchLocalePath(locale.code)" class="align-right langswitch" :lang="locale.code"><span>{{ locale.name }}</span></nuxt-link></b-col>
       </b-row>
       <div class="topbar-filters">
         <!--<nuxt-link :to="localePath('art')"><span>{{ $t('art') }}</span></nuxt-link>
@@ -89,11 +89,11 @@
 <style scoped lang="scss">
 
   //Colors
-  $dark_purple: #713e5a;
-  $light_purple: #94778b;
-  $lavender: #c6d4ff;
-  $green: #caff8a;
   $beige: #f9e0c8;
+  $blue: #10A5E5;
+  $orange: #FF670F;
+  $red: #891111;
+  $green: #175A07;
 
   .topbar{
     background-color: white;
@@ -167,34 +167,37 @@
               color: black;
             }
             &:nth-child(1){
-              background-color: $dark_purple;
+              background-color: $blue;
+
+              &:hover, &:focus{
+                background-color: lighten($blue, 7%);
+              }
+            }
+            &:nth-child(2){
+              background-color: $orange;
+
+              &:hover, &:focus{
+                background-color: lighten($orange, 3%);
+              }
+            }
+            &:nth-child(3){
+              background-color: $red;
 
               span{
                 color: white!important;
               }
               &:hover, &:focus{
-                background-color: lighten($dark_purple, 7%);
-              }
-            }
-            &:nth-child(2){
-              background-color: $lavender;
-
-              &:hover, &:focus{
-                background-color: lighten($lavender, 3%);
-              }
-            }
-            &:nth-child(3){
-              background-color: $green;
-
-              &:hover, &:focus{
-                background-color: lighten($green, 5%);
+                background-color: lighten($red, 5%);
               }
             }
             &:nth-child(4){
-              background-color: $beige;
+              background-color: $green;
 
+              span{
+                color: white!important;
+              }
               &:hover, &:focus{
-                background-color: lighten($beige, 3%);
+                background-color: lighten($green, 3%);
               }
             }
             /*&.nuxt-link-active{
@@ -227,7 +230,7 @@
 
   {
     "en": {
-      "title": "Influencal Indigenous Women Timeline",
+      "title": "Influencial Indigenous Women Timeline",
 
       "art": "art",
       "politics": "politics",
@@ -243,7 +246,7 @@
       "hideTags": "Hide women in the domain of "
     },
     "fr": {
-      "title": "Trame historique des femme autochtones influencielles",
+      "title": "Trame historique des femme autochtones influentes",
 
       "art": "art",
       "politics": "politique",
