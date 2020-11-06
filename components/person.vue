@@ -94,7 +94,7 @@
       padding-right: 5px;
 
       transform: scale(1);
-      transition: transform 0.4s, box-shadow 0.4s;
+      transition: transform 0.4s;
 
       &:hover, &:focus{
         text-decoration: none;
@@ -111,6 +111,7 @@
         border-radius: 50%;
         margin: auto;
         display: block;
+        transition: box-shadow 0.4s;
 
         box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.1);
       }

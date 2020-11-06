@@ -44,11 +44,11 @@
 <style lang="scss">
 
   //Colors
-  $dark_purple: #713e5a;
-  $light_purple: #94778b;
-  $lavender: #c6d4ff;
-  $green: #caff8a;
   $beige: #f9e0c8;
+  $blue: #10A5E5;
+  $orange: #FF670F;
+  $red: #891111;
+  $green: #175A07;
 
   html, body{
     margin: 0;
@@ -56,7 +56,7 @@
   }
 
   body{
-    background: url("~assets/background.jpg");
+    background: url("~assets/background2.jpg");
     background-attachment: fixed;
     font-family: "Titillium Web";
     font-weight: 500;
