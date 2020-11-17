@@ -3,12 +3,23 @@
     <a href="#" @click.prevent="toggle" @keypress.enter.prevent="toggle" role="tab" :aria-selected="showContentString" tabindex="0" class="text-center" :aria-labelledby="id + '_name'">
       <img :src="require('~/assets/persons/' + info.imgSrc + '.jpg')" alt="">
       <!--<img :src="require('~/assets/persons/' + info.imgSrc + '.jpg')" :alt="$i18n.locale == 'en' ? 'Image of ' + info.name : 'Image de ' + info.name" v-b-tooltip.top.hover.focus.html="info.name + ' (' + info.birth + '-' + info.death + ') ' + $t('selectToExpand')">-->
-      <span :id="id + '_name'">{{ info.name }} ({{ info.birth }}-{{ info.death }})</span>
+      <span :id="id + '_name'" v-html="'<strong>' + info.name + '</strong><br />(' + info.birth + '-' + info.death + ')'"></span>
     </a>
     <transition name="timeline-content">
-      <div class="content" v-show="showContent" role="tabpanel" :aria-label="info.name + $t('pressEsc')" :aria-expanded="showContentString" :aria-hidden="showContentStringInverted" tabindex="0" @keydown.esc="close">
-        <h2 :id="id">{{ info.name }} ({{ info.birth }}-{{ info.death }})</h2>
-        <span v-html="info.content"></span>
+      <div class="content" v-show="showContent" role="tabpanel" :aria-label="info.name + $t('pressEsc') | stripHTML" :aria-expanded="showContentString" :aria-hidden="showContentStringInverted" tabindex="0" @keydown.esc="close">
+        <b-row>
+          <b-col>
+            <h2 :id="id" v-html="'<strong>' + info.name + '</strong> (' + info.birth + '-' + info.death + ')'"></h2>
+          </b-col>
+        </b-row>
+        <b-row style="margin-top: 25px; margin-bottom: 25px;">
+          <b-col cols="12" md="6">
+            <img :src="require('~/assets/persons/' + info.imgSrc + '.jpg')" :alt="(($i18n.locale=='en') ? 'Image of ' : 'Image de ') + info.name | stripHTML" class="img-fluid">
+          </b-col>
+        </b-row>
+        <b-row>
+          <b-col v-html="info.content"></b-col>
+        </b-row>
       </div>
     </transition>
   </b-col>
@@ -69,6 +80,15 @@
       }
     },
 
+    filters: {
+      stripHTML(value) {
+        var div = document.createElement("div");
+        div.innerHTML = value;
+        var text = div.textContent || div.innerText || "";
+        return text;
+      }
+    },
+
     mounted(){
       //code
     },
@@ -120,8 +140,9 @@
       width: 80%;
       margin-top: 25px;
       margin-left: 10%;
-      background: url("~assets/AdobeStock_260952993_Preview.jpeg");
+      background: url("~assets/AdobeStock_260952993.jpeg");
       background-size: cover;
+      background-position: center center;
       padding: 40px 50px;
       border: 3px solid white;
       border-radius: 10px;
@@ -136,10 +157,10 @@
         left: -75%;
         margin-left: 0;
       }
-      @media (min-width: 1200px){
-        width: 300%;
+      @media (min-width: 1300px){
+        width: 400%;
         position: relative;
-        left: -100%;
+        left: -150%;
         margin-left: 0;
       }
       &:before{
@@ -152,6 +173,10 @@
         border-left: 15px solid transparent;
         border-right: 15px solid transparent;
         border-bottom: 20px solid white;
+      }
+
+      img.img-fluid{
+        border-radius: 10px;
       }
     }
   }

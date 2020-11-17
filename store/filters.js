@@ -1,6 +1,6 @@
 export const state = () => ({
-  periods: [],
-  tags: []
+  periods: ["1600", "1700", "1800", "1900", "1920", "1940", "1960", "1980", "2000", ],
+  tags: ["literature", "politics", "healthcare", "art", "veterans", "sports", "business", "media", "education", "law", ]
 })
 
 export const mutations = {

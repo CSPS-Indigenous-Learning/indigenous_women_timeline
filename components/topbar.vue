@@ -1,29 +1,41 @@
 <template>
-  <div class="topbar">
+  <header class="topbar">
     <b-container>
-      <b-row>
-        <b-col cols="10" offset="1" class="text-center"><h1>{{ $t('title') }}</h1></b-col>
-        <b-col cols="1" class="text-right" align-self="end"><nuxt-link v-for="locale in availableLocales" :key="locale.code" :to="switchLocalePath(locale.code)" class="align-right langswitch" :lang="locale.code"><span>{{ locale.name }}</span></nuxt-link></b-col>
+      <b-row align-v="center">
+        <b-col cols="2" md="1" v-if="isSmallScreen">
+          <a class="menu-toggle" href="#" :title="expandMenu ? $t('collapseMenu') : $t('expandMenu')" @click.prevent="expandMenu = !expandMenu"><font-awesome-icon icon="bars" size="2x" role="presentation" /><span class="v-inv" v-html="expandMenu ? $t('collapseMenu') : $t('expandMenu')"></span></a>
+        </b-col>
+        <b-col cols="6" md="10" offset="1" offset-md="0" offset-lg="1" class="text-center"><h1>{{ $t('title') }}</h1></b-col>
+        <b-col cols="3" md="1" class="text-right"><nuxt-link v-for="locale in availableLocales" :key="locale.code" :to="switchLocalePath(locale.code)" class="align-right langswitch" :lang="locale.code"><span>{{ locale.name }}</span></nuxt-link></b-col>
       </b-row>
-      <div class="topbar-filters">
-        <!--<nuxt-link :to="localePath('art')"><span>{{ $t('art') }}</span></nuxt-link>
-        <nuxt-link :to="localePath('politics')"><span>{{ $t('politics') }}</span></nuxt-link>-->
+      <transition name="menu">
+        <nav class="topbar-filters" v-if="!isSmallScreen || expandMenu" :label="$t('nav-label')">
+          <!--<nuxt-link :to="localePath('art')"><span>{{ $t('art') }}</span></nuxt-link>
+          <nuxt-link :to="localePath('politics')"><span>{{ $t('politics') }}</span></nuxt-link>-->
 
-        <div class="topbar-buttons">
-          <a href="#" :class="isActivated('art', tags) ? 'activated' : ''" @click.prevent="toggleFilter('art', 'tag')" :aria-label="(((!isActivated('art', tags)) ? $t('showTags') : $t('hideTags'))) + $t('art')"><span>{{ $t('artButton') }}</span></a>
-          <a href="#" :class="isActivated('politics', tags) ? 'activated' : ''" @click.prevent="toggleFilter('politics', 'tag')" :aria-label="(((!isActivated('politics', tags)) ? $t('showTags') : $t('hideTags'))) + $t('politics')"><span>{{ $t('politicsButton') }}</span></a>
-          <a href="#" :class="isActivated('something1', tags) ? 'activated' : ''" @click.prevent="toggleFilter('something1', 'tag')" :aria-label="(((!isActivated('something1', tags)) ? $t('showTags') : $t('hideTags'))) + $t('something')"><span>{{ $t('somethingButton') }}</span></a>
-          <a href="#" :class="isActivated('something2', tags) ? 'activated' : ''" @click.prevent="toggleFilter('something2', 'tag')" :aria-label="(((!isActivated('something2', tags)) ? $t('showTags') : $t('hideTags'))) + $t('something')"><span>{{ $t('somethingButton') }}</span></a>
-        </div>
+          <p class="filter-text">{{ $t('showTags') }}&hellip;</p>
 
-        <b-form-input id="filterText" :aria-label="$t('filterTimeline')" :aria-description="$t('filterDesc')" :placeholder="$t('filterTimeline')" v-model="filterText"></b-form-input>
-      </div>
+          <div class="topbar-buttons">
+            <a href="#" :class="isActivated('literature', tags) ? 'activated' : ''" @click.prevent="toggleFilter('literature', 'tag')" :aria-label="(((!isActivated('literature', tags)) ? $t('showTags') : $t('hideTags'))) + ' ' + $t('literature')"><span>{{ $t('literature') }}</span></a>
+            <a href="#" :class="isActivated('politics', tags) ? 'activated' : ''" @click.prevent="toggleFilter('politics', 'tag')" :aria-label="(((!isActivated('politics', tags)) ? $t('showTags') : $t('hideTags'))) + ' ' + $t('politics')"><span>{{ $t('politics') }}</span></a>
+            <a href="#" :class="isActivated('healthcare', tags) ? 'activated' : ''" @click.prevent="toggleFilter('healthcare', 'tag')" :aria-label="(((!isActivated('healthcare', tags)) ? $t('showTags') : $t('hideTags'))) + ' ' + $t('healthcare')"><span>{{ $t('healthcare') }}</span></a>
+            <a href="#" :class="isActivated('art', tags) ? 'activated' : ''" @click.prevent="toggleFilter('art', 'tag')" :aria-label="(((!isActivated('art', tags)) ? $t('showTags') : $t('hideTags'))) + ' ' + $t('art')"><span>{{ $t('art') }}</span></a>
+            <a href="#" :class="isActivated('veterans', tags) ? 'activated' : ''" @click.prevent="toggleFilter('veterans', 'tag')" :aria-label="(((!isActivated('veterans', tags)) ? $t('showTags') : $t('hideTags'))) + ' ' + $t('veterans')"><span>{{ $t('veterans') }}</span></a>
+            <a href="#" :class="isActivated('sports', tags) ? 'activated' : ''" @click.prevent="toggleFilter('sports', 'tag')" :aria-label="(((!isActivated('sports', tags)) ? $t('showTags') : $t('hideTags'))) + ' ' + $t('sports')"><span>{{ $t('sports') }}</span></a>
+            <a href="#" :class="isActivated('business', tags) ? 'activated' : ''" @click.prevent="toggleFilter('business', 'tag')" :aria-label="(((!isActivated('business', tags)) ? $t('showTags') : $t('hideTags'))) + ' ' + $t('business')"><span>{{ $t('business') }}</span></a>
+            <a href="#" :class="isActivated('media', tags) ? 'activated' : ''" @click.prevent="toggleFilter('media', 'tag')" :aria-label="(((!isActivated('art', tags)) ? $t('showTags') : $t('hideTags'))) + ' ' + $t('media')"><span>{{ $t('media') }}</span></a>
+            <a href="#" :class="isActivated('education', tags) ? 'activated' : ''" @click.prevent="toggleFilter('education', 'tag')" :aria-label="(((!isActivated('education', tags)) ? $t('showTags') : $t('hideTags'))) + ' ' + $t('education')"><span>{{ $t('education') }}</span></a>
+            <a href="#" :class="isActivated('law', tags) ? 'activated' : ''" @click.prevent="toggleFilter('law', 'tag')" :aria-label="(((!isActivated('law', tags)) ? $t('showTags') : $t('hideTags'))) + ' ' + $t('law')"><span>{{ $t('law') }}</span></a>
+          </div>
+
+          <b-form-input id="filterText" :aria-label="$t('filterTimeline')" :aria-description="$t('filterDesc')" :placeholder="$t('filterTimeline')" v-model="filterText"></b-form-input>
+        </nav>
+      </transition>
     </b-container>
-  </div>
+  </header>
 </template>
 
 <script>
-
 
   export default{
     components: {
@@ -32,7 +44,9 @@
 
     data(){
       return{
-        filterText: ""
+        filterText: "",
+        isSmallScreen: false,
+        expandMenu: false
       }
     },
 
@@ -76,11 +90,24 @@
         }
 
         return activated;
+      },
+      checkSmallScreen() {
+        if($(window).width() <= 997){
+          this.isSmallScreen = true;
+        }
+        else{
+          this.isSmallScreen = false;
+        }
       }
     },
 
     mounted(){
+      this.checkSmallScreen();
 
+      var that = this;
+      $(window).on("resize", function(){
+        that.checkSmallScreen();
+      });
     }
   }
 
@@ -101,11 +128,22 @@
     .container{
       //height: 100px;
 
+      a.menu-toggle{
+        color: black;
+
+        &:hover, &:focus{
+          color: #444444;
+        }
+      }
       h1{
         font-family: "Merienda";
         font-weight: 700;
-        font-size: 30px;
+        font-size: 26px;
         margin-top: 15px;
+
+        @media (min-width: 768px){
+          font-size: 30px;
+        }
       }
       a.langswitch{
         color: black;
@@ -120,14 +158,42 @@
         display: flex;
         justify-content: flex-start;
         align-items: stretch;
+        flex-wrap: wrap;
+
+        transition: clip-path 0.3s;
+
+        &.menu-enter, &.menu-leave-to {
+          clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%);
+        }
+
+        &.menu-leave, &.menu-enter-to {
+          clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+        }
 
         input{
-          flex: 0 0 45%;
-          margin-left: auto;
+          flex: 0 0 100%;
           align-self: center;
+          margin-top: 20px;
+          margin-bottom: 20px;
 
           @media (min-width: 768px){
             flex: 0 0 20%;
+            margin-left: auto;
+            margin-top: 0px;
+            margin-bottom: 0px;
+          }
+        }
+        .filter-text{
+          flex: 0 0 20%;
+          margin-right: 2.5%;
+          align-self: start;
+          margin-bottom: 0;
+          position: relative; 
+          top: 20px;
+
+          @media (min-width: 768px){
+            flex: 0 0 10%;
+            margin-right: 2.5%;
           }
         }
         .topbar-buttons{
@@ -136,37 +202,49 @@
           flex-wrap: wrap;
           align-items: stretch;
           position: relative;
-          top: 10px;
-          flex: 0 0 50%;
+          flex: 0 0 77.5%;
+          margin-top: 20px;
 
           @media (min-width: 768px){
-            flex: 0 0 75%;
+            flex: 0 0 65%;
+            top: 15px;
+            margin-top: 0px;
           }
 
           a{
-            flex: 0 0 100%;
             height: 50px;
             position: relative;
             transition: background-color 0.2s, border 0.2s;
             border-radius: 10px;
             border: 0px solid black;
+            background-color: $beige;
+            margin-bottom: 1%;
+            flex: 0 0 49%;
+            margin-right: 1%;
 
             @media (min-width: 768px){
-              flex: 0 0 50%;
             }
             @media (min-width: 992px){
-              flex: 0 0 25%;
+              flex: 0 0 19%;
+              margin-right: 1%;
             }
 
             &.activated{
-              border: 2px solid black;
+              //border: 2px solid black;
               box-sizing: border-box;
+              background-color: darken($beige, 15%);
+
+              &:hover, &:focus{
+                background-color: darken($beige, 20%);
+              }
             }
             &:hover, &:focus{
               text-decoration: none;
               color: black;
+              background-color: darken($beige, 7%);
             }
-            &:nth-child(1){
+
+            /*&:nth-child(1){
               background-color: $blue;
 
               &:hover, &:focus{
@@ -200,6 +278,54 @@
                 background-color: lighten($green, 3%);
               }
             }
+            &:nth-child(5){
+              background-color: $blue;
+
+              &:hover, &:focus{
+                background-color: lighten($blue, 7%);
+              }
+            }
+            &:nth-child(6){
+              background-color: $orange;
+
+              &:hover, &:focus{
+                background-color: lighten($orange, 3%);
+              }
+            }
+            &:nth-child(7){
+              background-color: $red;
+
+              span{
+                color: white!important;
+              }
+              &:hover, &:focus{
+                background-color: lighten($red, 5%);
+              }
+            }
+            &:nth-child(8){
+              background-color: $green;
+
+              span{
+                color: white!important;
+              }
+              &:hover, &:focus{
+                background-color: lighten($green, 3%);
+              }
+            }
+             &:nth-child(9){
+              background-color: $blue;
+
+              &:hover, &:focus{
+                background-color: lighten($blue, 7%);
+              }
+            }
+            &:nth-child(10){
+              background-color: $orange;
+
+              &:hover, &:focus{
+                background-color: lighten($orange, 3%);
+              }
+            }*/
             /*&.nuxt-link-active{
               background-color: #eeeeee;
             }
@@ -231,35 +357,53 @@
   {
     "en": {
       "title": "Influencial Indigenous Women Timeline",
-
-      "art": "art",
-      "politics": "politics",
-      "something": "something",
-      "artButton": "Women in Art",
-      "politicsButton": "Women in Politics",
-      "somethingButton": "Women in something",
+      
+      "literature": "in Literature",
+      "politics": "in Politics",
+      "healthcare": "in Healthcare",
+      "art": "in Art",
+      "veterans": "Veterans",
+      "sports": "in Sports",
+      "business": "in Business",
+      "media": "in Media",
+      "education": "in Education",
+      "law": "in Law",
 
       "filterTimeline": "Filter timeline",
       "filterDesc": "Enter text or keywords to filter the timeline",
 
-      "showTags": "Show women in the domain of ",
-      "hideTags": "Hide women in the domain of "
+      "showTags": "Show women",
+      "hideTags": "Hide women",
+
+      "collapseMenu": "Collapse Menu" ,
+      "expandMenu": "Expand Menu",
+
+      "nav-label": "Filter women by category or text"
     },
     "fr": {
       "title": "Trame historique des femme autochtones influentes",
-
-      "art": "art",
-      "politics": "politique",
-      "something": "quelque chose",
-      "artButton": "Femmes en art",
-      "politicsButton": "Femmes en politique",
-      "somethingButton": "Femme en quelque chose",
+      
+      "literature": "en littérature",
+      "politics": "en politique",
+      "healthcare": "en soins de santé",
+      "art": "en art",
+      "veterans": "vétérantes",
+      "sports": "en sports",
+      "business": "en affaires",
+      "media": "en médias",
+      "education": "en éducation",
+      "law": "en justice",
 
       "filterTimeline": "Filtrer la ligne de temps",
       "filterDesc": "Entrer du texte ou des mots clé pour filtrer la ligne de temps",
 
-      "showTags": "Montrer les femmes en ",
-      "hideTags": "Cacher les femmes en "
+      "showTags": "Montrer les femmes",
+      "hideTags": "Cacher les femmes",
+
+      "collapseMenu": "Réduire le menu" ,
+      "expandMenu": "Étendre le menu",
+
+      "nav-label": "Filter les femmes par catégorie ou par texte"
     }
   }
 
