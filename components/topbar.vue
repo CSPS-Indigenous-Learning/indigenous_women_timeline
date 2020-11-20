@@ -184,16 +184,21 @@
           }
         }
         .filter-text{
-          flex: 0 0 20%;
+          flex: 0 0 30%;
           margin-right: 2.5%;
           align-self: start;
           margin-bottom: 0;
           position: relative; 
-          top: 20px;
+          top: 25px;
+          overflow: visible;
 
           @media (min-width: 768px){
-            flex: 0 0 10%;
+            flex: 0 0 25%;
             margin-right: 2.5%;
+            text-align: right;
+          }
+          @media (min-width: 992px){
+            flex: 0 0 20%;
           }
         }
         .topbar-buttons{
@@ -202,25 +207,29 @@
           flex-wrap: wrap;
           align-items: stretch;
           position: relative;
-          flex: 0 0 77.5%;
+          flex: 0 0 67.5%;
           margin-top: 20px;
 
           @media (min-width: 768px){
-            flex: 0 0 65%;
-            top: 15px;
+            flex: 0 0 50%;
+            top: 20px;
             margin-top: 0px;
+          }
+          @media (min-width: 992px){
+            flex: 0 0 55%;
           }
 
           a{
             height: 50px;
             position: relative;
-            transition: background-color 0.2s, border 0.2s;
+            transition: background-color 0.2s, border 0.2s, box-shadow 0.2s, transform 0.2s;
             border-radius: 10px;
             border: 0px solid black;
             background-color: $beige;
             margin-bottom: 1%;
             flex: 0 0 49%;
             margin-right: 1%;
+            box-shadow: 0px 3px 5px 2px rgba(0, 0, 0, 0.1);
 
             @media (min-width: 768px){
             }
@@ -235,13 +244,15 @@
               background-color: darken($beige, 15%);
 
               &:hover, &:focus{
-                background-color: darken($beige, 20%);
+                background-color: darken($beige, 22.5%);
               }
             }
             &:hover, &:focus{
               text-decoration: none;
               color: black;
-              background-color: darken($beige, 7%);
+              background-color: darken($beige, 7.5%);
+              transform : scale(0.98);
+              box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.1);
             }
 
             /*&:nth-child(1){
@@ -358,22 +369,22 @@
     "en": {
       "title": "Influencial Indigenous Women Timeline",
       
-      "literature": "in Literature",
-      "politics": "in Politics",
-      "healthcare": "in Healthcare",
-      "art": "in Art",
+      "literature": "Literature",
+      "politics": "Politics",
+      "healthcare": "Healthcare",
+      "art": "Art",
       "veterans": "Veterans",
-      "sports": "in Sports",
-      "business": "in Business",
-      "media": "in Media",
-      "education": "in Education",
-      "law": "in Law",
+      "sports": "Sports",
+      "business": "Business",
+      "media": "Media",
+      "education": "Education",
+      "law": "Law",
 
       "filterTimeline": "Filter timeline",
       "filterDesc": "Enter text or keywords to filter the timeline",
 
-      "showTags": "Show women",
-      "hideTags": "Hide women",
+      "showTags": "Show women in",
+      "hideTags": "Hide women in",
 
       "collapseMenu": "Collapse Menu" ,
       "expandMenu": "Expand Menu",
@@ -383,22 +394,22 @@
     "fr": {
       "title": "Trame historique des femme autochtones influentes",
       
-      "literature": "en littérature",
-      "politics": "en politique",
-      "healthcare": "en soins de santé",
-      "art": "en art",
+      "literature": "littérature",
+      "politics": "politique",
+      "healthcare": "soins de santé",
+      "art": "art",
       "veterans": "vétérantes",
-      "sports": "en sports",
-      "business": "en affaires",
-      "media": "en médias",
-      "education": "en éducation",
-      "law": "en justice",
+      "sports": "sports",
+      "business": "affaires",
+      "media": "médias",
+      "education": "éducation",
+      "law": "justice",
 
       "filterTimeline": "Filtrer la ligne de temps",
       "filterDesc": "Entrer du texte ou des mots clé pour filtrer la ligne de temps",
 
-      "showTags": "Montrer les femmes",
-      "hideTags": "Cacher les femmes",
+      "showTags": "Montrer les femmes en",
+      "hideTags": "Cacher les femmes en",
 
       "collapseMenu": "Réduire le menu" ,
       "expandMenu": "Étendre le menu",

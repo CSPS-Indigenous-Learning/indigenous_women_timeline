@@ -56,10 +56,28 @@
   }
 
   body{
-    background: url("~assets/background2.jpg");
+    //background: url("~assets/background2.jpg");
     background-attachment: fixed;
     font-family: "Titillium Web";
     font-weight: 500;
+
+    position: relative;
+
+    //Fix for background-attachement: fixed; on phones
+    &:after {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      content: '';
+      background-image: url("~assets/background2.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-color: #000;
+      background-position: center center;
+      z-index: -1;
+    }
   }
 
   h1, h2, h3, h4, h5, h6{

@@ -73,6 +73,19 @@
         </b-col>
       </b-row>
     </b-container>
+    <b-container fluid class="footer-container">
+      <footer>
+        <b-row align-h="between" align-v="center">
+          <b-col cols="7" sm="6" md="4" lg="3" xl="2">
+            <img v-if="$i18n.locale=='en'" class="img-fluid" src="~assets/CSPS_FIP_BlackRed_E.png" alt="Canada School of Public Service Logo">
+            <img v-else-if="$i18n.locale=='fr'" class="img-fluid" src="~assets/CSPS_FIP_BlackRed_F.png" alt="Logo de l'École de la fonction publique du Canada">
+          </b-col>
+          <b-col cols="3" sm="2" md="2" lg="2" xl="1">
+            <img class="img-fluid" src="~assets/CSPS_CanadaWordmark_BlackRed.png" :alt="(($i18n.locale=='en') ? 'Government of Canada Wordmark' : 'Mot-symbole du gouvernement du Canada')">
+          </b-col>
+        </b-row>
+      </footer>
+    </b-container>
   </div>
 </template>
 
@@ -225,6 +238,7 @@
   .container-fluid.topbar-container{
     background-color: white;
     margin-bottom: 50px;
+    box-shadow: 0px 3px 5px 2px rgba(0, 0, 0, 0.1);
   }
 
   .timeline-fade-enter, .timeline-fade-leave-to {
@@ -292,6 +306,19 @@
       &.activated{
         border-bottom: 3px solid black;
       }
+    }
+  }
+
+  .container-fluid.footer-container{
+    background-color: white;
+    box-shadow: 0px -3px 5px 2px rgba(0, 0, 0, 0.05);
+  }
+
+  footer{
+    background-color: white;
+    
+    .row{
+      height: 70px;
     }
   }
 

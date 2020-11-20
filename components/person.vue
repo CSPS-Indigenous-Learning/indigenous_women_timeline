@@ -133,13 +133,13 @@
         display: block;
         transition: box-shadow 0.4s;
 
-        box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.1);
+        box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.2);
       }
     }
     .content{
-      width: 80%;
+      width: 100%;
       margin-top: 25px;
-      margin-left: 10%;
+      margin-left: -10%;
       background: url("~assets/AdobeStock_260952993.jpeg");
       background-size: cover;
       background-position: center center;
@@ -148,6 +148,7 @@
       border-radius: 10px;
       box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.1);
       position: relative;
+      font-size: 14px;
 
       transition: clip-path 0.5s, box-shadow 0.5s;
 
@@ -156,6 +157,7 @@
         position: relative;
         left: -75%;
         margin-left: 0;
+        font-size: 16px;
       }
       @media (min-width: 1300px){
         width: 400%;
@@ -163,16 +165,21 @@
         left: -150%;
         margin-left: 0;
       }
+
       &:before{
         content: "";
         position: absolute;
-        left: calc(50% - 15px);
+        left: calc(60% - 15px);
         top: -20px;
         width: 0;
         height: 0;
         border-left: 15px solid transparent;
         border-right: 15px solid transparent;
         border-bottom: 20px solid white;
+
+        @media (min-width: 992px){
+          left: calc(50% - 15px);
+        }
       }
 
       img.img-fluid{
