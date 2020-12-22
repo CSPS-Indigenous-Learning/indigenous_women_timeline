@@ -3,13 +3,24 @@
     <a href="#" @click.prevent="toggle" @keypress.enter.prevent="toggle" role="tab" :aria-selected="showContentString" tabindex="0" class="text-center" :aria-labelledby="id + '_name'">
       <img :src="require('~/assets/persons/' + info.imgSrc + '.jpg')" alt="">
       <!--<img :src="require('~/assets/persons/' + info.imgSrc + '.jpg')" :alt="$i18n.locale == 'en' ? 'Image of ' + info.name : 'Image de ' + info.name" v-b-tooltip.top.hover.focus.html="info.name + ' (' + info.birth + '-' + info.death + ') ' + $t('selectToExpand')">-->
-      <span :id="id + '_name'" v-html="'<strong>' + info.name + '</strong><br />(' + info.birth + '-' + info.death + ')'"></span>
+      <span :id="id + '_name'">
+        <strong v-html="info.name"></strong>
+        <br />
+        <span v-html="'(' + info.birth + '-' + info.death + ')'" aria-hidden="true"></span>
+        <span v-html="'(' + $t('bornIn') + ' ' + info.birth + ' ' + $t('deadIn') + ' ' + info.death + ')'" class="v-inv" v-if="info.death && info.death != ''"></span>
+        <span v-html="'(' + $t('bornIn') + ' ' + info.birth + ')'" class="v-inv" v-else></span>
+        <br />
+        <span class="nation" v-html="info.nation" v-if="info.nation && info.nation != ''"></span>
+      </span>
     </a>
     <transition name="timeline-content">
       <div class="content" v-show="showContent" role="tabpanel" :aria-label="info.name + $t('pressEsc') | stripHTML" :aria-expanded="showContentString" :aria-hidden="showContentStringInverted" tabindex="0" @keydown.esc="close">
         <b-row>
           <b-col>
-            <h2 :id="id" v-html="'<strong>' + info.name + '</strong> (' + info.birth + '-' + info.death + ')'"></h2>
+            <h2 :id="id" v-html="info.name + ' (' + info.birth + '-' + info.death + ')'" aria-hidden="true"></h2>
+            <h2 :id="id" v-html="info.name + ' (' + $t('bornIn') + ' ' + info.birth + ' ' + $t('deadIn') + ' ' + info.death + ')'" class="v-inv" v-if="info.death && info.death != ''"></h2>
+            <h2 :id="id" v-html="info.name + ' (' + $t('bornIn') + ' ' + info.birth + ')'" class="v-inv" v-else></h2>
+            <h3 class="nation" v-html="info.nation" v-if="info.nation && info.nation != ''"></h3>
           </b-col>
         </b-row>
         <b-row style="margin-top: 25px; margin-bottom: 25px;">
@@ -135,6 +146,18 @@
 
         box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.2);
       }
+      & > span{
+        font-size: 17px;
+        margin-top: 10px;
+        display: block;
+
+        span.nation{
+          font-size: 0.85em;
+          display: block;
+          line-height: 1.3;
+          margin-top: 7px;
+        }
+      }
     }
     .content{
       width: 100%;
@@ -182,6 +205,10 @@
         }
       }
 
+      .nation{
+        font-size: 1.2em;
+        font-weight: 400;
+      }
       img.img-fluid{
         border-radius: 10px;
       }
@@ -205,11 +232,17 @@
   {
     "en": {
       "selectToExpand" : "<span class='v-inv'>(select the image to get more information about this woman)</span>",
-      "pressEsc": " (press the escape key to close)"
+      "pressEsc": " (press the escape key to close)",
+
+      "bornIn": "born in",
+      "deadIn": "and deceased in"
     },
     "fr": {
       "selectToExpand" : "<span class='v-inv'>(sélectionnez l'image pour obtenir plus d'information à propos de cette femme)</span>",
-      "pressEsc": " (appuyez sur la touche d'échappement pour fermer)"
+      "pressEsc": " (appuyez sur la touche d'échappement pour fermer)",
+
+      "bornIn": "née en",
+      "deadIn": "et décédée en"
     }
   }
 
