@@ -1,3 +1,4 @@
+<!-- Top Bar (title, tags, text filter, etc.) -->
 <template>
   <header class="topbar">
     <b-container>
@@ -13,7 +14,7 @@
           <!--<nuxt-link :to="localePath('art')"><span>{{ $t('art') }}</span></nuxt-link>
           <nuxt-link :to="localePath('politics')"><span>{{ $t('politics') }}</span></nuxt-link>-->
 
-          <p class="filter-text" v-html="$t('filterText')"></p>
+          <p class="tags-label" v-html="$t('tagsLabel')"></p>
 
           <div class="topbar-buttons">
             <div>
@@ -169,11 +170,14 @@
       h1{
         font-family: "Merienda";
         font-weight: 700;
-        font-size: 26px;
+        font-size: 20px;
         margin-top: 15px;
 
         @media (min-width: 768px){
-          font-size: 30px;
+          font-size: 26px;
+        }
+        @media (min-width: 992px){
+            font-size: 30px;
         }
       }
       a.langswitch{
@@ -214,7 +218,7 @@
             margin-bottom: 0px;
           }
         }
-        .filter-text{
+        .tags-label{
           flex: 0 0 30%;
           margin-right: 2.5%;
           align-self: start;
@@ -226,7 +230,7 @@
           @media (min-width: 768px){
             flex: 0 0 25%;
             margin-right: 2.5%;
-            text-align: right;
+            //text-align: right;
           }
           @media (min-width: 992px){
             flex: 0 0 20%;
@@ -424,11 +428,12 @@
                 &.activated{
                   background-color: #0d82b5;
 
-                  span{
-                    color: white!important;
-                  }
                   &:hover, &:focus{
                     background-color: darken(#0d82b5, 7.5%);
+
+                    span{
+                      color: white!important;
+                    }
                   }
                 }
               }
@@ -464,7 +469,7 @@
     "en": {
       "title": "Influencial Indigenous Women Timeline",
       
-      "filterText": "Filter women by tags&hellip;",
+      "tagsLabel": "Use tags to filter results&hellip;",
 
       "literature": "Literature",
       "politics": "Politics",
@@ -495,22 +500,22 @@
     "fr": {
       "title": "Trame historique des femme autochtones influentes",
 
-      "filterText": "Filtrer les femmes par balises&hellip;",
+      "tagsLabel": "Utiliser les balises pour filtrer<br />les résultats&hellip;",
       
-      "literature": "littérature",
-      "politics": "politique",
-      "healthcare": "soins de santé",
-      "art": "art",
-      "veterans": "vétérantes",
-      "sports": "sports",
-      "business": "affaires",
-      "media": "médias",
-      "education": "éducation",
-      "law": "justice",
+      "literature": "Littérature",
+      "politics": "Politique",
+      "healthcare": "Soins de santé",
+      "art": "Art",
+      "veterans": "Vétérantes",
+      "sports": "Sports",
+      "business": "Affaires",
+      "media": "Médias",
+      "education": "Éducation",
+      "law": "Justice",
 
       "first": "Premières Nations",
-      "inuit": "Inuit",
-      "metis": "Métis",
+      "inuit": "Inuites",
+      "metis": "Métisses",
 
       "filterTimeline": "Filtrer la ligne de temps",
       "filterDesc": "Entrer du texte ou des mots clé pour filtrer la ligne de temps",

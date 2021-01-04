@@ -22,6 +22,12 @@ export default {
         type: "text/javascript",
         integrity: "sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=",
         crossorigin: "anonymous"
+      },
+      {
+        src: "https://code.jquery.com/ui/1.12.1/jquery-ui.js",
+        type: "text/javascript",
+        integrity: "sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=",
+        crossorigin: "anonymous"
       }
     ]
   },

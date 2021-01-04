@@ -1,36 +1,21 @@
 <template>
-  <div>
-    <!--<b-container fluid class="topbar-container">
-      <b-row>
-        <b-col><topbar /></b-col>
-      </b-row>
-    </b-container>-->
-    <!--<b-container>-->
-      <Nuxt />
-    <!--</b-container>-->
-  </div>
+  <Nuxt />
 </template>
 
 <script>
-
-  import topbar from "~/components/topbar";
 
   export default{
 
     head() {
       return {
         htmlAttrs: { lang: this.$i18n.locale },
-        title: (this.$i18n.locale=="en") ? "Influencial Indigenous Women Timeline" : "Trame historique des femme autochtones influentes"
+        title: (this.$i18n.locale=="en") ? "Influencial Indigenous Women Timeline" : "Trame historique des femmes autochtones influentes"
       }
-    },
-
-    components: {
-      topbar
     },
 
     data(){
       return{
-        politics: this.$i18n.t('politics')
+
       }
     },
 

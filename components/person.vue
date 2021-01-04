@@ -1,6 +1,7 @@
+<!-- Every individual timeline item (women) -->
 <template>
   <b-col cols="12" lg="2" class="person">
-    <a href="#" @click.prevent="toggle" @keypress.enter.prevent="toggle" role="tab" :aria-selected="showContentString" tabindex="0" class="text-center" :aria-labelledby="id + '_name'">
+    <a href="#" @click.prevent="toggle" @keypress.enter.prevent="toggle" role="tab" :aria-selected="showContentString" tabindex="0" class="text-center" :aria-labelledby="id + '_name'" :aria-posinset="posinset" :aria-setsize="setsize">
       <img :src="require('~/assets/persons/' + info.imgSrc + '.jpg')" alt="">
       <!--<img :src="require('~/assets/persons/' + info.imgSrc + '.jpg')" :alt="$i18n.locale == 'en' ? 'Image of ' + info.name : 'Image de ' + info.name" v-b-tooltip.top.hover.focus.html="info.name + ' (' + info.birth + '-' + info.death + ') ' + $t('selectToExpand')">-->
       <span :id="id + '_name'">
@@ -10,7 +11,7 @@
         <span v-html="'(' + $t('bornIn') + ' ' + info.birth + ' ' + $t('deadIn') + ' ' + info.death + ')'" class="v-inv" v-if="info.death && info.death != ''"></span>
         <span v-html="'(' + $t('bornIn') + ' ' + info.birth + ')'" class="v-inv" v-else></span>
         <br />
-        <span class="nation" v-html="info.nation" v-if="info.nation && info.nation != ''"></span>
+        <span class="group" v-if="info.group && info.group != ''">{{ $t(info.group) }}</span>
       </span>
     </a>
     <transition name="timeline-content">
@@ -20,7 +21,7 @@
             <h2 :id="id" v-html="info.name + ' (' + info.birth + '-' + info.death + ')'" aria-hidden="true"></h2>
             <h2 :id="id" v-html="info.name + ' (' + $t('bornIn') + ' ' + info.birth + ' ' + $t('deadIn') + ' ' + info.death + ')'" class="v-inv" v-if="info.death && info.death != ''"></h2>
             <h2 :id="id" v-html="info.name + ' (' + $t('bornIn') + ' ' + info.birth + ')'" class="v-inv" v-else></h2>
-            <h3 class="nation" v-html="info.nation" v-if="info.nation && info.nation != ''"></h3>
+            <h3 class="group" v-if="info.group && info.group != ''">{{ $t(info.group) }}</h3>
           </b-col>
         </b-row>
         <b-row style="margin-top: 25px; margin-bottom: 25px;">
@@ -45,7 +46,10 @@
 
     props:{
       info: { type: Object, default: function () { return {} } },
-      id: { type: String, default: "" }
+      id: { type: String, default: "" },
+
+      posinset: { type: String, default: "" },
+      setsize: { type: String, default: "" }
     },
 
     data(){
@@ -151,7 +155,7 @@
         margin-top: 10px;
         display: block;
 
-        span.nation{
+        span.group{
           font-size: 0.85em;
           display: block;
           line-height: 1.3;
@@ -205,7 +209,7 @@
         }
       }
 
-      .nation{
+      .group{
         font-size: 1.2em;
         font-weight: 400;
       }
@@ -235,14 +239,22 @@
       "pressEsc": " (press the escape key to close)",
 
       "bornIn": "born in",
-      "deadIn": "and deceased in"
+      "deadIn": "and deceased in",
+
+      "first": "First Nations",
+      "inuit": "Inuit",
+      "metis": "Métis"
     },
     "fr": {
       "selectToExpand" : "<span class='v-inv'>(sélectionnez l'image pour obtenir plus d'information à propos de cette femme)</span>",
       "pressEsc": " (appuyez sur la touche d'échappement pour fermer)",
 
       "bornIn": "née en",
-      "deadIn": "et décédée en"
+      "deadIn": "et décédée en",
+
+      "first": "Premières Nations",
+      "inuit": "Inuite",
+      "metis": "Métisse"
     }
   }
 
