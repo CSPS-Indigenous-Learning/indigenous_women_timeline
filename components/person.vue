@@ -18,7 +18,7 @@
       <div class="content" v-show="showContent" role="tabpanel" :aria-label="info.name + $t('pressEsc') | stripHTML" :aria-expanded="showContentString" :aria-hidden="showContentStringInverted" tabindex="0" @keydown.esc="close">
         <b-row>
           <b-col>
-            <h2 :id="id" v-html="info.name + ' (' + info.birth + '-' + info.death + ')'" aria-hidden="true"></h2>
+            <h2 v-html="info.name + ' (' + info.birth + '-' + info.death + ')'" aria-hidden="true"></h2>
             <h2 :id="id" v-html="info.name + ' (' + $t('bornIn') + ' ' + info.birth + ' ' + $t('deadIn') + ' ' + info.death + ')'" class="v-inv" v-if="info.death && info.death != ''"></h2>
             <h2 :id="id" v-html="info.name + ' (' + $t('bornIn') + ' ' + info.birth + ')'" class="v-inv" v-else></h2>
             <h3 class="group" v-if="info.group && info.group != ''">{{ $t(info.group) }}</h3>
@@ -48,8 +48,8 @@
       info: { type: Object, default: function () { return {} } },
       id: { type: String, default: "" },
 
-      posinset: { type: String, default: "" },
-      setsize: { type: String, default: "" }
+      posinset: { type: Number, default: 0 },
+      setsize: { type: Number, default: 0 }
     },
 
     data(){

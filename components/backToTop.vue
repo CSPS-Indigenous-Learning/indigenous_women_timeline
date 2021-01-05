@@ -1,7 +1,9 @@
 <!-- Back to top button -->
 <template>
-  <div :class="scrollPos >= 1000 ? ['show', 'back-to-top'] : 'back-to-top'" role="button" tabindex="0" :aria-label="$t('label')" @click.prevent="scrollUp" @keypress.enter.prevent="scrollUp">
-    <font-awesome-icon icon="arrow-up" size="2x" role="presentation" />
+  <div role="complementary" :aria-label="$t('label')">
+    <div :class="scrollPos >= 1000 ? ['show', 'back-to-top'] : 'back-to-top'" role="button" tabindex="0" :aria-label="$t('label')" @click.prevent="scrollUp" @keypress.enter.prevent="scrollUp">
+      <font-awesome-icon icon="arrow-up" size="2x" role="presentation" />
+    </div>
   </div>
 </template>
 

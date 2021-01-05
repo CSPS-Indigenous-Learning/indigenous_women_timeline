@@ -250,6 +250,7 @@
       p{
         flex: 0 0 auto;
         display: block;
+        width: calc(100% - 65px);
         margin-bottom: 0;
       }
     }

@@ -1,6 +1,6 @@
 <!-- ILS banner at the bottom of the page -->
 <template>
-  <b-container fluid class="ils-banner-container" role="complementary">
+  <b-container fluid class="ils-banner-container" role="complementary" :aria-label="(($i18n.locale === 'en') ? 'Indigenous Learning Series' : 'Série d\'apprentissage sur les questions autochtones')">
     <b-row align-h="end" no-gutters>
       <b-col cols="11" sm="8" md="6" lg="5" xl="4" class="ils-banner">
         <img v-if="$i18n.locale=='en'" class="img-fluid" src="~assets/ils_banner_en.png" alt="Indigenous Learning Series Logo: Recognition, Respect, Relationships, Reconciliation">

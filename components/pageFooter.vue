@@ -8,7 +8,7 @@
           <img v-else-if="$i18n.locale=='fr'" class="img-fluid" src="~assets/CSPS_FipFr_White.png" alt="Mot-symbole de l'École de la fonction publique du Canada">
         </b-col>
         <b-col cols="3" sm="2" md="2" lg="1" xl="1">
-          <img class="symbol img-fluid" src="~assets/CSPS_LOGO.png" :alt="(($i18n.locale=='en') ? 'Symbole de l\'École de la fonction publique du Canada' : 'Canada School of Public Service Symbol')">
+          <img class="symbol img-fluid" src="~assets/CSPS_LOGO.png" :alt="(($i18n.locale=='en') ? 'Canada School of Public Service Symbol' : 'Symbole de l\'École de la fonction publique du Canada')">
         </b-col>
       </b-row>
     </b-container>
