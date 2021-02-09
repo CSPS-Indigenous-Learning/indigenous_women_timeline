@@ -2,19 +2,20 @@
   <div>
     <bypass />
 
+    <!--<page-footer />-->
+
     <b-container fluid class="topbar-container">
       <b-row no-gutters>
         <b-col><topbar /></b-col>
       </b-row>
     </b-container>
-
-    <b-container tag="main" id="mainContent">
-      <timeline />
-    </b-container>
-
+    
     <ils />
 
-    <page-footer />
+    <b-container tag="main" id="mainContent">
+      <welcome />
+      <timeline />
+    </b-container>
 
     <back-to-top />
   </div>
@@ -26,7 +27,8 @@
   import bypass from "~/components/bypass";
   import ils from "~/components/ils";
   import pageFooter from "~/components/pageFooter";
-  import backToTop from '../components/backToTop.vue';
+  import backToTop from '~/components/backToTop.vue';
+  import Welcome from '~/components/welcome.vue';
 
   export default{
     components: {
@@ -34,7 +36,8 @@
       bypass,
       ils,
       pageFooter,
-      backToTop
+      backToTop,
+      Welcome
     },
 
     data(){
@@ -50,8 +53,11 @@
 
   .container-fluid.topbar-container{
     background-color: white;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
     box-shadow: 0px 3px 5px 2px rgba(0, 0, 0, 0.1);
+    padding: 0;
+    position: relative;
+    z-index: 1;
   }
 
 </style>

@@ -3,12 +3,7 @@
   <b-row align-v="start" role="tablist">
     <b-col cols="12" style="margin-bottom: 50px;">
       <transition name="alert-fade">
-        <b-alert v-if="nothingToShow" show variant="warning" class="nothing-alert">
-          <div class="icon">
-            <font-awesome-icon icon="lightbulb" size="2x" role="presentation" />
-          </div>
-          <p>{{ $t('nothingToShow') }}</p>
-        </b-alert>
+        <tip v-if="nothingToShow" style="padding-left: 7%;">{{ $t('nothingToShow') }}</tip>
       </transition>
     </b-col>
     <b-col cols="2" class="text-center year-filter"><a href="#" :class="isActivated('1600', periods) ? 'activated' : ''" @click.prevent="toggleFilter('1600', 'period')" :aria-label="((!isActivated('1600', periods)) ? $t('showYears') : $t('hideYears')) + '1600' + (($i18n.locale=='en') ? '\'s' : '')">1600</a></b-col>
@@ -71,10 +66,12 @@
 <script type="text/javascript">
   
   import person from "~/components/person";
+  import Tip from '~/components/tip.vue';
   
   export default{
     components: {
-      person
+      person,
+      Tip
     },
     data(){
       return{
@@ -217,43 +214,6 @@
 
   .timeline-fade-leave-active {
     position: absolute;
-  }
-
-  .alert{
-    transition: opacity 0.3s, transform 0.3s;
-
-    &.nothing-alert{
-      background-color: transparent!important;;
-      color: black!important;
-      border: none!important;
-      padding-left: 7%;
-      display: flex;
-      align-items: center;
-      flex-flow: row nowrap;
-
-      .icon{
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        background-color: rgb(255, 196, 0);
-        position: relative;
-        flex: 0 0 auto;
-        margin-right: 15px;
-
-        svg.svg-inline--fa{
-          position: absolute;
-          left: 14px;
-          top: 10px;
-          color: black;
-        }
-      }
-      p{
-        flex: 0 0 auto;
-        display: block;
-        width: calc(100% - 65px);
-        margin-bottom: 0;
-      }
-    }
   }
 
   .alert-fade-enter, .alert-fade-leave-to {

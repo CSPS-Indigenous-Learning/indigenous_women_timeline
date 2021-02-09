@@ -16,6 +16,7 @@
     </a>
     <transition name="timeline-content">
       <div class="content" v-show="showContent" role="tabpanel" :aria-label="info.name + $t('pressEsc') | stripHTML" :aria-expanded="showContentString" :aria-hidden="showContentStringInverted" tabindex="0" @keydown.esc="close">
+        <button class="close" @click="close"><font-awesome-icon icon="times" size="1x" role="presentation" /><span class="v-inv">{{ $t('closePanel') }} {{ $t(info.name) }}</span></button>
         <b-row>
           <b-col>
             <h2 v-html="info.name + ' (' + info.birth + '-' + info.death + ')'" aria-hidden="true"></h2>
@@ -176,6 +177,7 @@
       box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.1);
       position: relative;
       font-size: 14px;
+      z-index: 1000;
 
       transition: clip-path 0.5s, box-shadow 0.5s;
 
@@ -216,6 +218,19 @@
       img.img-fluid{
         border-radius: 10px;
       }
+      button.close{
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: black;
+        opacity: 0.6;
+
+        transition: opacity 0.1s;
+
+        &:hover, &:focus{
+          opacity: 1;
+        }
+      }
     }
   }
 
@@ -243,7 +258,9 @@
 
       "first": "First Nations",
       "inuit": "Inuit",
-      "metis": "Métis"
+      "metis": "Métis",
+
+      "closePanel": "Close information panel for"
     },
     "fr": {
       "selectToExpand" : "<span class='v-inv'>(sélectionnez l'image pour obtenir plus d'information à propos de cette femme)</span>",
@@ -254,7 +271,9 @@
 
       "first": "Premières Nations",
       "inuit": "Inuite",
-      "metis": "Métisse"
+      "metis": "Métisse",
+
+      "closePanel": "Fermer le panneau d'informations pour"
     }
   }
 

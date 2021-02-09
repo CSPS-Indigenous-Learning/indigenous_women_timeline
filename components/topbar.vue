@@ -1,6 +1,19 @@
 <!-- Top Bar (title, tags, text filter, etc.) -->
 <template>
   <header class="topbar">
+    <div class="school-banner-container">
+      <b-container>
+        <b-row class="school-banner" align-h="between" align-v="center">
+          <b-col cols="7" sm="6" md="4" lg="3" xl="3">
+            <img v-if="$i18n.locale=='en'" class="img-fluid" src="~assets/CSPS_FipEng_White.png" alt="Canada School of Public Service Wordmark">
+            <img v-else-if="$i18n.locale=='fr'" class="img-fluid" src="~assets/CSPS_FipFr_White.png" alt="Mot-symbole de l'École de la fonction publique du Canada">
+          </b-col>
+          <b-col cols="3" sm="2" md="2" lg="1" xl="1">
+            <img class="symbol img-fluid" src="~assets/CSPS_LOGO.png" :alt="(($i18n.locale=='en') ? 'Canada School of Public Service Symbol' : 'Symbole de l\'École de la fonction publique du Canada')">
+          </b-col>
+        </b-row>
+      </b-container>
+    </div>
     <b-container>
       <b-row align-v="center">
         <b-col cols="2" md="1" v-if="isSmallScreen">
@@ -36,8 +49,8 @@
             </div>
           </div>
 
-          <b-form-input id="filterText" :aria-label="$t('filterTimeline')" aria-describedby="filterText_desc" :placeholder="$t('filterTimeline')" v-model="filterText"></b-form-input>
-          <span class="v-inv" id="filterText_desc" v-html="$t('filterDesc')"></span>
+          <b-form-textarea no-resize :rows="changeTextareaSize ? 3 : 2" id="filterText" :aria-label="$t('filterDesc')" :placeholder="$t('filterDesc')" v-model="filterText"></b-form-textarea>
+          <!--<span class="v-inv" id="filterText_desc" v-html="$t('filterDesc')"></span>-->
         </nav>
       </transition>
     </b-container>
@@ -55,6 +68,7 @@
       return{
         filterText: "",
         isSmallScreen: false,
+        changeTextareaSize: false,
         expandMenu: false
       }
     },
@@ -127,9 +141,17 @@
       checkSmallScreen() {
         if($(window).width() <= 997){
           this.isSmallScreen = true;
+
+          if($(window).width() > 768){
+            this.changeTextareaSize = true;
+          }
+          else{
+            this.changeTextareaSize = false;
+          }
         }
         else{
           this.isSmallScreen = false;
+          this.changeTextareaSize = false;
         }
       }
     },
@@ -154,10 +176,54 @@
   $orange: #FF670F;
   $red: #891111;
   $green: #175A07;
+  $green_light: rgb(126, 182, 112);
 
   .topbar{
     background-color: white;
 
+    .school-banner-container{
+      background: #3F2A55;
+      background: linear-gradient(90deg, #3F2A55 0%, #2E2980 100%);
+      box-shadow: 0px -3px 5px 2px rgba(0, 0, 0, 0.05);
+      width: 100%;
+
+      .container{
+        .school-banner{
+          padding-top: 10px;
+          padding-bottom: 10px;
+
+          img.img-fluid{
+            max-width: 75%;
+
+            &.symbol{
+              max-width: 40%;
+            }
+          }
+          .symbol{
+            float: right;
+          }
+          @media (min-width:576px){
+            img.img-fluid{
+              max-width: 85%;
+
+              &.symbol{
+                max-width: 70%;
+              }
+            }
+          }
+          @media (min-width: 768px){
+            img.img-fluid.symbol{
+              max-width: 50%;
+            }
+          }
+          @media (min-width: 992px){
+            img.img-fluid.symbol{
+              max-width: 75%;
+            }
+          }
+        }
+      }
+    }
     .container{
       //height: 100px;
 
@@ -178,7 +244,7 @@
           font-size: 26px;
         }
         @media (min-width: 992px){
-            font-size: 30px;
+          font-size: 30px;
         }
       }
       a.langswitch{
@@ -206,20 +272,28 @@
           clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
         }
 
-        input{
+        textarea{
           flex: 0 0 100%;
           align-self: flex-start;
           margin-top: 20px;
           margin-bottom: 20px;
+          font-size: 15px;
 
           @media (min-width: 768px){
-            flex: 0 0 17.5%;
+            flex: 0 0 25%;
             margin-left: 2.5%;
             //margin-top: 0px;
             margin-bottom: 0px;
+
+            //IE does weird stuff again and needs a different width for some reason
+            @at-root html.ie & {
+              flex: 0 0 21%;
+            }
           }
           @media (min-width: 992px){
-            flex: 0 0 20%;
+            @at-root html.ie & {
+              flex: 0 0 22%;
+            }
           }
         }
         .tags-label{
@@ -232,12 +306,12 @@
           overflow: visible;
 
           @media (min-width: 768px){
-            flex: 0 0 25%;
+            flex: 0 0 20%;
             margin-right: 2.5%;
             //text-align: right;
           }
           @media (min-width: 992px){
-            flex: 0 0 20%;
+            flex: 0 0 15%;
           }
         }
         .topbar-buttons{
@@ -276,12 +350,13 @@
               transition: background-color 0.2s, border 0.2s, box-shadow 0.2s, transform 0.2s, color 0.2s;
               border-radius: 10px;
               border: 0px solid black;
-              background-color: $beige;
+              background-color: lighten($orange, 30%);
               margin-bottom: 1%;
               flex: 0 0 49%;
               margin-right: 1%;
               box-shadow: 0px 3px 5px 2px rgba(0, 0, 0, 0.1);
               color: black;
+              transform: scale(0.9);
 
               @media (min-width: 992px){
                 flex: 0 0 19%;
@@ -291,16 +366,19 @@
               &.activated{
                 //border: 2px solid black;
                 box-sizing: border-box;
-                background-color: darken($beige, 15%);
+                background-color: $green_light;
+                font-weight: 700;
+                transform : scale(1);
 
                 &:hover, &:focus{
-                  background-color: darken($beige, 22.5%);
+                  background-color: darken($green_light, 10%);
+                  transform : scale(0.98);
                 }
               }
               &:hover, &:focus{
                 text-decoration: none;
-                background-color: darken($beige, 7.5%);
-                transform : scale(0.98);
+                background-color: lighten($orange, 20%);
+                transform : scale(0.88);
                 box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.1);
               }
               span{
@@ -315,7 +393,7 @@
                 font-size: 15px;
               }
             }
-            &.groups a{
+            /*&.groups a{
               &:nth-child(1){
                 background-color: #9cd88e;
 
@@ -361,7 +439,7 @@
                   }
                 }
               }
-            }
+            }*/
           }
         }
       }
@@ -393,8 +471,7 @@
       "inuit": "Inuit",
       "metis": "Métis",
 
-      "filterTimeline": "Filter timeline",
-      "filterDesc": "Enter text or keywords to filter the timeline",
+      "filterDesc": "Use keywords to filter results",
 
       "showTags": "Show women with the tag “",
       "hideTags": "Hide women with the tag “",
@@ -405,9 +482,9 @@
       "nav-label": "Filter women by tags or text"
     },
     "fr": {
-      "title": "Trame historique des femme autochtones influentes",
+      "title": "Trame historique des femmes autochtones influentes",
 
-      "tagsLabel": "Utiliser les balises pour filtrer<br />les résultats&hellip;",
+      "tagsLabel": "Utiliser les balises pour filtrer les résultats&hellip;",
       
       "literature": "Littérature",
       "politics": "Politique",
@@ -424,8 +501,7 @@
       "inuit": "Inuites",
       "metis": "Métisses",
 
-      "filterTimeline": "Filtrer la ligne de temps",
-      "filterDesc": "Entrer du texte ou des mots clé pour filtrer la ligne de temps",
+      "filterDesc": "Utiliser des mots-clés pour filtrer les résultats",
 
       "showTags": "Montrer les femmes avec la balise « ",
       "hideTags": "Cacher les femmes avec la balise « ",
