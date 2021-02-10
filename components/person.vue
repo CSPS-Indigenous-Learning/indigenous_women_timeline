@@ -82,16 +82,18 @@
       close(){
         this.showContent = false;
       },
+      open(){
+        this.showContent = true;
+
+        var that = this;
+        setTimeout(function(){
+          $(that.$el).find(".content")[0].focus();
+        }, 510);
+      },
       toggle(){
-        this.showContent = !this.showContent;
-
-        if(this.showContent){
+        if(!this.showContent){
           this.$emit("open");
-
-          var that = this;
-          setTimeout(function(){
-            $(that.$el).find(".content")[0].focus();
-          }, 510);
+          this.open();
         }
       }
     },

@@ -3,61 +3,61 @@
   <b-row align-v="start" role="tablist">
     <b-col cols="12" style="margin-bottom: 50px;">
       <transition name="alert-fade">
-        <tip v-if="nothingToShow" style="padding-left: 7%;">{{ $t('nothingToShow') }}</tip>
+        <tip v-if="nothingToShow" style="padding-left: 7%; margin-top: 50px;">{{ $t('nothingToShow') }}</tip>
       </transition>
     </b-col>
     <b-col cols="2" class="text-center year-filter"><a href="#" :class="isActivated('1600', periods) ? 'activated' : ''" @click.prevent="toggleFilter('1600', 'period')" :aria-label="((!isActivated('1600', periods)) ? $t('showYears') : $t('hideYears')) + '1600' + (($i18n.locale=='en') ? '\'s' : '')">1600</a></b-col>
     <b-col cols="10">
       <transition-group name="timeline-fade" tag="div" class="row">
-        <person v-for="(person, index) in persons1600" :key="'1600_' + index" :info="person" :id="'1600_' + index" @open="closeAllOthers(person)" :ref="'person1600_' + index" :posinset="index + 1" :setsize="totalNumber"></person>
+        <person v-for="(person, index) in persons1600" :key="'1600_' + index" :info="person" :id="'1600_' + index" @open="openPanel()" :ref="'person1600_' + index" :posinset="index + 1" :setsize="totalNumber"></person>
       </transition-group>
     </b-col>
     <b-col cols="2" class="text-center year-filter"><a href="#" :class="isActivated('1700', periods) ? 'activated' : ''" @click.prevent="toggleFilter('1700', 'period')" :aria-label="((!isActivated('1700', periods)) ? $t('showYears') : $t('hideYears')) + '1700' + (($i18n.locale=='en') ? '\'s' : '')">1700</a></b-col>
     <b-col cols="10">
       <transition-group name="timeline-fade" tag="div" class="row">
-        <person v-for="(person, index) in persons1700" :key="'1700_' + index" :info="person" :id="'1700_' + index" @open="closeAllOthers(person)" :ref="'person1700_' + index" :posinset="persons1600.length + index + 1" :setsize="totalNumber"></person>
+        <person v-for="(person, index) in persons1700" :key="'1700_' + index" :info="person" :id="'1700_' + index" @open="openPanel()" :ref="'person1700_' + index" :posinset="persons1600.length + index + 1" :setsize="totalNumber"></person>
       </transition-group>
     </b-col>
     <b-col cols="2" class="text-center year-filter"><a href="#" :class="isActivated('1800', periods) ? 'activated' : ''" @click.prevent="toggleFilter('1800', 'period')" :aria-label="((!isActivated('1800', periods)) ? $t('showYears') : $t('hideYears')) + '1800' + (($i18n.locale=='en') ? '\'s' : '')">1800</a></b-col>
     <b-col cols="10">
       <transition-group name="timeline-fade" tag="div" class="row">
-        <person v-for="(person, index) in persons1800" :key="'1800_' + index" :info="person" :id="'1800_' + index" @open="closeAllOthers(person)" :ref="'person1800_' + index" :posinset="persons1600.length + persons1700.length + index + 1" :setsize="totalNumber"></person>
+        <person v-for="(person, index) in persons1800" :key="'1800_' + index" :info="person" :id="'1800_' + index" @open="openPanel()" :ref="'person1800_' + index" :posinset="persons1600.length + persons1700.length + index + 1" :setsize="totalNumber"></person>
       </transition-group>
     </b-col>
     <b-col cols="2" class="text-center year-filter"><a href="#" :class="isActivated('1900', periods) ? 'activated' : ''" @click.prevent="toggleFilter('1900', 'period')" :aria-label="((!isActivated('1900', periods)) ? $t('showYearsBetween') : $t('hideYearsBetween')) + '1900 ' + $t('and') + ' 1919'">1900-1919</a></b-col>
     <b-col cols="10">
       <transition-group name="timeline-fade" tag="div" class="row">
-        <person v-for="(person, index) in persons1900" :key="'1900_' + index" :info="person" :id="'1900_' + index" @open="closeAllOthers(person)" :ref="'person1900_' + index" :posinset="persons1600.length + persons1700.length + persons1800.length + index + 1" :setsize="totalNumber"></person>
+        <person v-for="(person, index) in persons1900" :key="'1900_' + index" :info="person" :id="'1900_' + index" @open="openPanel()" :ref="'person1900_' + index" :posinset="persons1600.length + persons1700.length + persons1800.length + index + 1" :setsize="totalNumber"></person>
       </transition-group>
     </b-col>
     <b-col cols="2" class="text-center year-filter"><a href="#" :class="isActivated('1920', periods) ? 'activated' : ''" @click.prevent="toggleFilter('1920', 'period')" :aria-label="((!isActivated('1920', periods)) ? $t('showYearsBetween') : $t('hideYearsBetween')) + '1920 ' + $t('and') + ' 1939'">1920-1939</a></b-col>
     <b-col cols="10">
       <transition-group name="timeline-fade" tag="div" class="row">
-        <person v-for="(person, index) in persons1920" :key="'1920_' + index" :info="person" :id="'1920_' + index" @open="closeAllOthers(person)" :ref="'person1920_' + index" :posinset="persons1600.length + persons1700.length + persons1800.length + persons1900.length + index + 1" :setsize="totalNumber"></person>
+        <person v-for="(person, index) in persons1920" :key="'1920_' + index" :info="person" :id="'1920_' + index" @open="openPanel()" :ref="'person1920_' + index" :posinset="persons1600.length + persons1700.length + persons1800.length + persons1900.length + index + 1" :setsize="totalNumber"></person>
       </transition-group>
     </b-col>
     <b-col cols="2" class="text-center year-filter"><a href="#" :class="isActivated('1940', periods) ? 'activated' : ''" @click.prevent="toggleFilter('1940', 'period')" :aria-label="((!isActivated('1940', periods)) ? $t('showYearsBetween') : $t('hideYearsBetween')) + '1940 ' + $t('and') + ' 1959'">1940-1959</a></b-col>
     <b-col cols="10">
       <transition-group name="timeline-fade" tag="div" class="row">
-        <person v-for="(person, index) in persons1940" :key="'1940_' + index" :info="person" :id="'1940_' + index" @open="closeAllOthers(person)" :ref="'person1940_' + index" :posinset="persons1600.length + persons1700.length + persons1800.length + persons1900.length + persons1920.length + index + 1" :setsize="totalNumber"></person>
+        <person v-for="(person, index) in persons1940" :key="'1940_' + index" :info="person" :id="'1940_' + index" @open="openPanel()" :ref="'person1940_' + index" :posinset="persons1600.length + persons1700.length + persons1800.length + persons1900.length + persons1920.length + index + 1" :setsize="totalNumber"></person>
       </transition-group>
     </b-col>
     <b-col cols="2" class="text-center year-filter"><a href="#" :class="isActivated('1960', periods) ? 'activated' : ''" @click.prevent="toggleFilter('1960', 'period')" :aria-label="((!isActivated('1960', periods)) ? $t('showYearsBetween') : $t('hideYearsBetween')) + '1960 ' + $t('and') + ' 1979'">1960-1979</a></b-col>
     <b-col cols="10">
       <transition-group name="timeline-fade" tag="div" class="row">
-        <person v-for="(person, index) in persons1960" :key="'1960_' + index" :info="person" :id="'1960_' + index" @open="closeAllOthers(person)" :ref="'person1960_' + index" :posinset="persons1600.length + persons1700.length + persons1800.length + persons1900.length + persons1920.length + persons1940.length + index + 1" :setsize="totalNumber"></person>
+        <person v-for="(person, index) in persons1960" :key="'1960_' + index" :info="person" :id="'1960_' + index" @open="openPanel()" :ref="'person1960_' + index" :posinset="persons1600.length + persons1700.length + persons1800.length + persons1900.length + persons1920.length + persons1940.length + index + 1" :setsize="totalNumber"></person>
       </transition-group>
     </b-col>
     <b-col cols="2" class="text-center year-filter"><a href="#" :class="isActivated('1980', periods) ? 'activated' : ''" @click.prevent="toggleFilter('1980', 'period')" :aria-label="((!isActivated('1980', periods)) ? $t('showYearsBetween') : $t('hideYearsBetween')) + '1980 ' + $t('and') + ' 1999'">1980-1999</a></b-col>
     <b-col cols="10">
       <transition-group name="timeline-fade" tag="div" class="row">
-        <person v-for="(person, index) in persons1980" :key="'1980_' + index" :info="person" :id="'1980_' + index" @open="closeAllOthers(person)" :ref="'person1980_' + index" :posinset="persons1600.length + persons1700.length + persons1800.length + persons1900.length + persons1920.length + persons1940.length + persons1960.length + index + 1" :setsize="totalNumber"></person>
+        <person v-for="(person, index) in persons1980" :key="'1980_' + index" :info="person" :id="'1980_' + index" @open="openPanel()" :ref="'person1980_' + index" :posinset="persons1600.length + persons1700.length + persons1800.length + persons1900.length + persons1920.length + persons1940.length + persons1960.length + index + 1" :setsize="totalNumber"></person>
       </transition-group>
     </b-col>
     <b-col cols="2" class="text-center year-filter"><a href="#" :class="isActivated('2000', periods) ? 'activated' : ''" @click.prevent="toggleFilter('2000', 'period')" :aria-label="((!isActivated('2000', periods)) ? $t('showYears') : $t('hideYears')) + '2000' + (($i18n.locale=='en') ? '\'s' : '')">2000</a></b-col>
     <b-col cols="10">
       <transition-group name="timeline-fade" tag="div" class="row">
-        <person v-for="(person, index) in persons2000" :key="'2000_' + index" :info="person" :id="'2000_' + index" @open="closeAllOthers(person)" :ref="'person2000_' + index" :posinset="persons1600.length + persons1700.length + persons1800.length + persons1900.length + persons1920.length + persons1940.length + persons1960.length + persons1980.length + index + 1" :setsize="totalNumber"></person>
+        <person v-for="(person, index) in persons2000" :key="'2000_' + index" :info="person" :id="'2000_' + index" @open="openPanel()" :ref="'person2000_' + index" :posinset="persons1600.length + persons1700.length + persons1800.length + persons1900.length + persons1920.length + persons1940.length + persons1960.length + persons1980.length + index + 1" :setsize="totalNumber"></person>
       </transition-group>
     </b-col>
   </b-row>
@@ -189,18 +189,21 @@
           return false;
         }
       },
-      closeAllOthers(info){
-        var refs = Object.values(this.$refs)
+      openPanel(){
+        var children = Object.values(this.$children);
 
-        for(var i = 0; i < refs.length; i++){
-          var ref = refs[i][0];
-
-          if(ref && ref._name == "<Person>" && ref.info.name != info.name){
-            ref.close();
+        for(var i = 0; i < children.length; i++){
+          if(children[i].$children){
+            var grandChildren = Object.values(children[i].$children);
+            for(var j = 0; j < grandChildren.length; j++){
+              if($(grandChildren[j].$el).hasClass("person")){
+                grandChildren[j].close()
+              }
+            }
           }
         }
       }
-    },
+    }
   }
   
 </script>
