@@ -6,10 +6,12 @@
       <!--<img :src="require('~/assets/persons/' + info.imgSrc + '.jpg')" :alt="$i18n.locale == 'en' ? 'Image of ' + info.name : 'Image de ' + info.name" v-b-tooltip.top.hover.focus.html="info.name + ' (' + info.birth + '-' + info.death + ') ' + $t('selectToExpand')">-->
       <span :id="id + '_name'">
         <strong v-html="info.name"></strong>
-        <br />
-        <span v-html="'(' + info.birth + '-' + info.death + ')'" aria-hidden="true"></span>
-        <span v-html="'(' + $t('bornIn') + ' ' + info.birth + ' ' + $t('deadIn') + ' ' + info.death + ')'" class="v-inv" v-if="info.death && info.death != ''"></span>
-        <span v-html="'(' + $t('bornIn') + ' ' + info.birth + ')'" class="v-inv" v-else></span>
+        <span v-if="!info.hideDates">
+          <br />
+          <span v-html="'(' + info.birth + '-' + info.death + ')'" aria-hidden="true"></span>
+          <span v-html="'(' + $t('bornIn') + ' ' + info.birth + ' ' + $t('deadIn') + ' ' + info.death + ')'" class="v-inv" v-if="info.death && info.death != ''"></span>
+          <span v-html="'(' + $t('bornIn') + ' ' + info.birth + ')'" class="v-inv" v-else></span>
+        </span>
         <br />
         <span class="group" v-if="info.group && info.group != ''">{{ $t(info.group) }}</span>
       </span>
@@ -94,6 +96,9 @@
         if(!this.showContent){
           this.$emit("open");
           this.open();
+        }
+        else{
+          this.close();
         }
       }
     },

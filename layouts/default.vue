@@ -145,6 +145,36 @@
     width: 1px;
   }
 
+  a.external {
+    text-decoration: underline;
+    color: #007bff;
+
+    &:hover, &:focus{
+      text-decoration: none!important;
+      cursor: pointer;
+    }
+    
+    &:after{
+      background: url("../assets/icon_external_link.svg");
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 15px;
+      height: 15px;
+      overflow:hidden;
+      color:transparent;
+      display: inline-block;
+      margin-left: 3px;
+    }
+  }
+
+  html[lang="en"] a.external:after{
+    content: "(This content will open in a new window)";
+  }
+    
+  html[lang="fr"] a.external:after{
+    content: "(Ce contenu ouvrira dans une nouvelle fenêtre)";
+  }
+
 </style>
 
 <i18n>
