@@ -21,9 +21,12 @@
         <button class="close" @click="close"><font-awesome-icon icon="times" size="1x" role="presentation" /><span class="v-inv">{{ $t('closePanel') }} {{ $t(info.name) }}</span></button>
         <b-row>
           <b-col>
-            <h2 v-html="info.name + ' (' + info.birth + '-' + info.death + ')'" aria-hidden="true"></h2>
-            <h2 :id="id" v-html="info.name + ' (' + $t('bornIn') + ' ' + info.birth + ' ' + $t('deadIn') + ' ' + info.death + ')'" class="v-inv" v-if="info.death && info.death != ''"></h2>
-            <h2 :id="id" v-html="info.name + ' (' + $t('bornIn') + ' ' + info.birth + ')'" class="v-inv" v-else></h2>
+            <h2 v-html="info.name + ' (' + info.birth + '-' + info.death + ')'" aria-hidden="true" v-if="!info.hideDates"></h2>
+            <h2 v-html="info.name" aria-hidden="true" v-else></h2>
+            <div v-if="!info.hideDates">
+              <h2 :id="id" v-html="info.name + ' (' + $t('bornIn') + ' ' + info.birth + ' ' + $t('deadIn') + ' ' + info.death + ')'" class="v-inv" v-if="info.death && info.death != ''"></h2>
+              <h2 :id="id" v-html="info.name + ' (' + $t('bornIn') + ' ' + info.birth + ')'" class="v-inv" v-else></h2>
+            </div>
             <h3 class="group" v-if="info.group && info.group != ''">{{ $t(info.group) }}</h3>
           </b-col>
         </b-row>
