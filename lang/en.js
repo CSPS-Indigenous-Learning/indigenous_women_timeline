@@ -1008,7 +1008,7 @@ export default {
         content: "<p>Rhonda Head is a Mezzo-Soprano from Opaskwayak Cree Nation. She has been studying classical music with Private vocal teachers from Toronto, Ontario; Denver, Colorado; The Pas, Manitoba; and Winnipeg, Manitoba. Rhonda also had the opportunity to study with Dramatic Mezzo Soprano&ThinSpace;&ndash;&ThinSpace;Barbara McAllister in Oklahoma, and world-renowned Vocal teacher Richard Armstrong at the Banff Centre for Arts. In 2010, she released her debut <abbr>CD</abbr> Kayas, which includes pieces that are recorded in five different languages&ThinSpace;&ndash;&ThinSpace;Italian, French, Latin, English and Cree. Kayas earned her a nomination in the 2011 Indian Summer Music Festival in the Spiritual Category and won a 2011 Native American Music Award for Best World Recording.</p>"
       },
       13: {
-        name: "RMichelle Farmer",
+        name: "Michelle Farmer",
         birth: "1988",
         death: "",
         hideDates: false,
