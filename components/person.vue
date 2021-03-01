@@ -13,7 +13,8 @@
           <span v-html="'(' + $t('bornIn') + ' ' + info.birth + ')'" class="v-inv" v-else></span>
         </span>
         <br />
-        <span class="group" v-if="info.group && info.group != ''">{{ $t(info.group) }}</span>
+        <span class="group" v-if="info.group.length == 1">{{ $t(info.group[0]) }}</span>
+        <span class="group" v-else-if="info.group.length == 2">{{ $t(info.group[0]) }}, {{ $t(info.group[1]) }}</span>
       </span>
     </a>
     <transition name="timeline-content">
@@ -27,7 +28,8 @@
               <h2 :id="id" v-html="info.name + ' (' + $t('bornIn') + ' ' + info.birth + ' ' + $t('deadIn') + ' ' + info.death + ')'" class="v-inv" v-if="info.death && info.death != ''"></h2>
               <h2 :id="id" v-html="info.name + ' (' + $t('bornIn') + ' ' + info.birth + ')'" class="v-inv" v-else></h2>
             </div>
-            <h3 class="group" v-if="info.group && info.group != ''">{{ $t(info.group) }}</h3>
+            <h3 class="group" v-if="info.group.length == 1">{{ $t(info.group[0]) }}</h3>
+            <h3 class="group" v-else-if="info.group.length == 2">{{ $t(info.group[0]) }}, {{ $t(info.group[1]) }}</h3>
           </b-col>
         </b-row>
         <b-row style="margin-top: 25px; margin-bottom: 25px;">
@@ -37,6 +39,15 @@
         </b-row>
         <b-row>
           <b-col v-html="info.content"></b-col>
+        </b-row>
+        <b-row>
+          <b-col>
+            <p v-if="info.sources.length == 1">Source{{ (($i18n.locale === "en") ? "" : "&nbsp;") }}: <external :link="info.sources[0].link" :name="info.sources[0].name.split('&ThinSpace;&ndash;&ThinSpace;').join(' - ')" v-html="info.sources[0].name"></external></p>
+
+            <p v-else-if="info.sources.length == 2">Sources{{ (($i18n.locale === "en") ? "" : "&nbsp;") }}: <external :link="info.sources[0].link" :name="info.sources[0].name.split('&ThinSpace;&ndash;&ThinSpace;').join(' - ')" v-html="info.sources[0].name"></external>, <external :link="info.sources[1].link" :name="info.sources[1].name.split('&ThinSpace;&ndash;&ThinSpace;').join(' - ')" v-html="info.sources[1].name"></external></p>
+
+            <p v-else-if="info.sources.length == 3">Sources{{ (($i18n.locale === "en") ? "" : "&nbsp;") }}: <external :link="info.sources[0].link" :name="info.sources[0].name.split('&ThinSpace;&ndash;&ThinSpace;').join(' - ')" v-html="info.sources[0].name"></external>, <external :link="info.sources[1].link" :name="info.sources[1].name.split('&ThinSpace;&ndash;&ThinSpace;').join(' - ')" v-html="info.sources[1].name"></external>, <external :link="info.sources[2].link" :name="info.sources[2].name.split('&ThinSpace;&ndash;&ThinSpace;').join(' - ')" v-html="info.sources[2].name"></external></p>
+          </b-col>
         </b-row>
       </div>
     </transition>
@@ -131,7 +142,7 @@
 
     transition: all 0.7s;
 
-    a{
+    a:not(.external){
       text-align: center;
       display: block;
       color: black;

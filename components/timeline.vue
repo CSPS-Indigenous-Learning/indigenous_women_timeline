@@ -133,7 +133,7 @@
         var that = this;
         
         return arr.filter(function(person){
-          if(that.isActivated(decade, that.periods) && that.isActivated(person.group, that.groups) && that.checkTags(person) && that.checkFilterText(person)){
+          if(that.isActivated(decade, that.periods) && that.checkGroups(person) && that.checkTags(person) && that.checkFilterText(person)){
             return true;
           }
           else{
@@ -175,6 +175,17 @@
 
         for(var i = 0; i < person.tags.length; i++){
           if(this.isActivated(person.tags[i], this.tags)){
+            check = true;
+          }
+        }
+
+        return check;
+      },
+      checkGroups(person){
+        var check = false;
+
+        for(var i = 0; i < person.group.length; i++){
+          if(this.isActivated(person.group[i], this.groups)){
             check = true;
           }
         }
@@ -248,21 +259,21 @@
 
   {
     "en": {
-      "showYears": "Show women born in the ",
-      "hideYears": "Hide women born in the ",
+      "showYears": "Show women born or active in the ",
+      "hideYears": "Hide women born or active in the ",
       
-      "showYearsBetween": "Show women born between ",
-      "hideYearsBetween": "Hide women born between ",
+      "showYearsBetween": "Show women born or active between ",
+      "hideYearsBetween": "Hide women born or active between ",
       "and": "and",
 
       "nothingToShow": "Your selection of tags, years and text does not return any women."
     },
     "fr": {
-      "showYears": "Montrer les femmes nées dans les années ",
-      "hideYears": "Cacher les femmes nées dans les années ",
+      "showYears": "Montrer les femmes nées ou actives dans les années ",
+      "hideYears": "Cacher les femmes nées ou actives dans les années ",
       
-      "showYearsBetween": "Montrer les femmes nées entre ",
-      "hideYearsBetween": "Cacher les femmes nées entre ",
+      "showYearsBetween": "Montrer les femmes nées ou actives entre ",
+      "hideYearsBetween": "Cacher les femmes nées ou actives entre ",
       "and": "et",
 
       "nothingToShow": "Votre sélection de balises, d'années et de texte ne retourne aucune femme."
