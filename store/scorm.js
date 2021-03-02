@@ -212,7 +212,8 @@ function doLMSSetValue(name, value) {
 function doLMSCommit() {
   var api = getAPIHandle();
   if (api == null) {
-    alert("Unable to locate the LMS's API Implementation.\nLMSCommit was not successful.");
+    //CSPS-Blord alert("Unable to locate the LMS's API Implementation.\nLMSCommit was not successful.");
+    console.log("no scorm")
     return "false";
   } else {
     var result = api.LMSCommit("");
@@ -526,9 +527,9 @@ export const getters = {
 
 export const actions = {
   setSuccess({commit}){
-    setCompletion('passed')
+    setCompletion('completed')
   },
-  setLMSObjectives({ commit, state }) {
+  /*setLMSObjectives({ commit, state }) {
     // intention: initialize cmi.objectives.n.id with the 3 objectives, set passage mark at 80
     setObjective(0, 'plan', 80, 100)
     setObjective(1, 'spend', 80, 100)
@@ -555,7 +556,7 @@ export const actions = {
       }
     }
    commit('setExamStatus')
-  }
+  }*/
 }
 
 export const mutations = {

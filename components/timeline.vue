@@ -214,6 +214,10 @@
           }
         }
       }
+    },
+
+    mounted(){
+      this.$store.dispatch('scorm/setSuccess');
     }
   }
   

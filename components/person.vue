@@ -42,11 +42,11 @@
         </b-row>
         <b-row>
           <b-col>
-            <p v-if="info.sources.length == 1">Source{{ (($i18n.locale === "en") ? "" : "&nbsp;") }}: <external :link="info.sources[0].link" :name="info.sources[0].name.split('&ThinSpace;&ndash;&ThinSpace;').join(' - ')" v-html="info.sources[0].name"></external></p>
+            <p v-if="info.sources.length == 1">Source{{ (($i18n.locale === "en") ? "" : "&nbsp;") }}: <external :link="info.sources[0].link" :name="info.sources[0].name.split('&ThinSpace;&ndash;&ThinSpace;').join(' - ') | stripHTML" v-html="info.sources[0].name" lang="en"></external></p>
 
-            <p v-else-if="info.sources.length == 2">Sources{{ (($i18n.locale === "en") ? "" : "&nbsp;") }}: <external :link="info.sources[0].link" :name="info.sources[0].name.split('&ThinSpace;&ndash;&ThinSpace;').join(' - ')" v-html="info.sources[0].name"></external>, <external :link="info.sources[1].link" :name="info.sources[1].name.split('&ThinSpace;&ndash;&ThinSpace;').join(' - ')" v-html="info.sources[1].name"></external></p>
+            <p v-else-if="info.sources.length == 2">Sources{{ (($i18n.locale === "en") ? "" : "&nbsp;") }}: <external :link="info.sources[0].link" :name="info.sources[0].name.split('&ThinSpace;&ndash;&ThinSpace;').join(' - ') | stripHTML" v-html="info.sources[0].name" lang="en"></external>, <external :link="info.sources[1].link" :name="info.sources[1].name.split('&ThinSpace;&ndash;&ThinSpace;').join(' - ') | stripHTML" v-html="info.sources[1].name" lang="en"></external></p>
 
-            <p v-else-if="info.sources.length == 3">Sources{{ (($i18n.locale === "en") ? "" : "&nbsp;") }}: <external :link="info.sources[0].link" :name="info.sources[0].name.split('&ThinSpace;&ndash;&ThinSpace;').join(' - ')" v-html="info.sources[0].name"></external>, <external :link="info.sources[1].link" :name="info.sources[1].name.split('&ThinSpace;&ndash;&ThinSpace;').join(' - ')" v-html="info.sources[1].name"></external>, <external :link="info.sources[2].link" :name="info.sources[2].name.split('&ThinSpace;&ndash;&ThinSpace;').join(' - ')" v-html="info.sources[2].name"></external></p>
+            <p v-else-if="info.sources.length == 3">Sources{{ (($i18n.locale === "en") ? "" : "&nbsp;") }}: <external :link="info.sources[0].link" :name="info.sources[0].name.split('&ThinSpace;&ndash;&ThinSpace;').join(' - ') | stripHTML" v-html="info.sources[0].name" lang="en"></external>, <external :link="info.sources[1].link" :name="info.sources[1].name.split('&ThinSpace;&ndash;&ThinSpace;').join(' - ') | stripHTML" v-html="info.sources[1].name" lang="en"></external>, <external :link="info.sources[2].link" :name="info.sources[2].name.split('&ThinSpace;&ndash;&ThinSpace;').join(' - ') | stripHTML" v-html="info.sources[2].name" lang="en"></external></p>
           </b-col>
         </b-row>
       </div>

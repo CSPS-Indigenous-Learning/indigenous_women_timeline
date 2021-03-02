@@ -32,6 +32,12 @@ export default {
     ]
   },
 
+  router: {  
+    //Prod -> _PREPROD -> Indigenous -> ILS Women Timeline: cninv000000000019315
+
+    //base: '/ProdContent/cninv000000000019315/'
+  },
+
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: [
     '@fortawesome/fontawesome-svg-core/styles.css',

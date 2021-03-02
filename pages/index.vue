@@ -14,6 +14,7 @@
 
     <b-container tag="main" id="mainContent">
       <welcome />
+      <suggest />
       <timeline />
     </b-container>
 
@@ -29,6 +30,7 @@
   import pageFooter from "~/components/pageFooter";
   import backToTop from '~/components/backToTop.vue';
   import Welcome from '~/components/welcome.vue';
+  import suggest from '~/components/suggest.vue';
 
   export default{
     components: {
@@ -37,7 +39,8 @@
       ils,
       pageFooter,
       backToTop,
-      Welcome
+      Welcome,
+      suggest
     },
 
     data(){
