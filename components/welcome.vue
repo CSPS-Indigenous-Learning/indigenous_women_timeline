@@ -28,7 +28,7 @@
         <p>Find out more by consulting the Timeline of Influential Indigenous Women.</p>
       </div>
       <div v-else-if="$i18n.locale === 'fr'">
-        <p>La chronologie des femmes autochtones influentes documente la vie de plus de 150 femmes, filles, bispirituelles, lesbiennes, gaies, bisexuelles, transgenres, queer, en questionnement, intersexuelles et asexuées (<abbr>2SLGBTQQIA</abbr>) des Premières nations, des Inuits et des Métis. Il reconnaît et valorise les rôles et contributions essentiels des femmes autochtones à la société canadienne.</p>
+        <p>La chronologie des femmes autochtones influentes documente la vie de plus de 150 femmes, filles, bispirituelles, lesbiennes, gaies, bisexuelles, transgenres, queer, en questionnement, intersexuelles et asexuées (<abbr>2SLGBTQQIA</abbr>) des Premières nations, des Inuits et des Métis. Elle reconnaît et valorise les rôles et contributions essentiels des femmes autochtones à la société canadienne.</p>
 
         <p>La plupart des chroniques du pays connu sous le nom de Canada sont présentées uniquement du point de vue colonialiste. Ces chroniques doivent également tenir compte des perspectives autochtones, notamment des valeurs, des cultures et des moyens de subsistance des autochtones.  Elles doivent prendre en considération les visions autochtones du monde qui reconnaissent que tout dans l'univers est interconnecté (la terre, les gens, les créatures animées et inanimées) et que toutes les relations sont hautement valorisées.</p>
 
