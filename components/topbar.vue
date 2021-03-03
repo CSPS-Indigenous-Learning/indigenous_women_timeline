@@ -452,7 +452,7 @@
 
   {
     "en": {
-      "title": "Influencial Indigenous Women Timeline",
+      "title": "The Timeline of Influential Indigenous Women",
       
       "tagsLabel": "Use tags to filter results&hellip;",
 
@@ -482,7 +482,7 @@
       "nav-label": "Filter women by tags or text"
     },
     "fr": {
-      "title": "Trame historique des femmes autochtones influentes",
+      "title": "La chronologie des femmes autochtones influentes",
 
       "tagsLabel": "Utiliser les balises pour filtrer les résultats&hellip;",
       

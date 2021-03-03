@@ -9,7 +9,7 @@
     head() {
       return {
         htmlAttrs: { lang: this.$i18n.locale },
-        title: (this.$i18n.locale=="en") ? "Influencial Indigenous Women Timeline" : "Trame historique des femmes autochtones influentes"
+        title: (this.$i18n.locale=="en") ? "The Timeline of Influential Indigenous Women" : "La chronologie des femmes autochtones influentes"
       }
     },
 

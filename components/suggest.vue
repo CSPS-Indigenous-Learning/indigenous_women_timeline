@@ -124,11 +124,11 @@
   {
     "en": {
       "label": "Suggest New Influential Women",
-      "subject": "New%20names%20suggestion%20for%20Influential%20Indigenous%20Women%20Timeline"
+      "subject": "New%20names%20suggestion%20for%20the%20Timeline%20of%20Influential%20Indigenous%20Women"
     },
     "fr": {
       "label": "Suggérer de nouvelles femmes influentes",
-      "subject": "Suggestion%20de%20nouveaux%20noms%20pour%20la%20Trame%20historique%20des%20femmes%20autochones%20influentes"
+      "subject": "Suggestion%20de%20nouveaux%20noms%20pour%20la%20chronologie%20des%20femmes%20autochtones%20influentes"
     }
   }
 

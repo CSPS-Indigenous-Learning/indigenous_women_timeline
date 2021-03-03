@@ -97,8 +97,8 @@ export default {
     defaultLocale: "en",
     fallbackLocale: 'en',
     fallbackRoot: true,
-    silentTranslationWarn: true,
-    silentFallbackWarn: true
+    silentTranslationWarn: false,
+    silentFallbackWarn: false
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
