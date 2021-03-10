@@ -1,10 +1,10 @@
 <template>
   <div>
     <b-row class="welcome-container" align-v="center">
-      <b-col cols="1">
+      <b-col cols="2" sm="1">
         <button class="welcome" v-b-modal.welcome-message aria-labelledby="welcome-label"><font-awesome-icon icon="comment-alt" size="2x" role="presentation" /></button>
       </b-col>
-      <b-col cols="11">
+      <b-col cols="10" sm="11">
         <div id="welcome-label" class="text-center">{{ $t('label') }}</div>
       </b-col>
     </b-row>
@@ -150,10 +150,12 @@
     padding: 3px 10px;
     display: inline;
     position: relative;
-    left: 50px;
+    left: 35px;
+    font-size: 0.7rem;
 
     @media (min-width: 576px){
       left: 45px;
+      font-size: 1rem;
     }
     @media (min-width: 768px){
       left: 30px;

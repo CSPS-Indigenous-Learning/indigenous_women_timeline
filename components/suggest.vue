@@ -1,10 +1,10 @@
 <template>
   <div>
     <b-row class="suggest-container" align-v="center">
-      <b-col cols="1">
+      <b-col cols="2" sm="1">
         <a :href="'mailto:csps.ils-saqa.efpc@canada.ca?subject=' + $t('subject')" class="suggest" aria-labelledby="suggest-label"><font-awesome-icon icon="users" size="2x" role="presentation" /></a>
       </b-col>
-      <b-col cols="11">
+      <b-col cols="10" sm="11">
         <div id="suggest-label" class="text-center">{{ $t('label') }}</div>
       </b-col>
     </b-row>
@@ -88,10 +88,12 @@
     padding: 3px 10px;
     display: inline;
     position: relative;
-    left: 50px;
+    left: 35px;
+    font-size: 0.7rem;
 
     @media (min-width: 576px){
       left: 45px;
+      font-size: 1rem;
     }
     @media (min-width: 768px){
       left: 30px;

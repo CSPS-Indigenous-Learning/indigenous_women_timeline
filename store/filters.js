@@ -1,6 +1,6 @@
 export const state = () => ({
-  periods: ["1600", "1700", "1800", "1900", "1920", "1940", "1960", "1980", "2000", ],
-  tags: ["literature", "politics", "healthcare", "art", "veterans", "sports", "business", "media", "education", "law",],
+  periods: ["1600", "1700", "1800", "1900", "1920", "1940", "1960", "1980", "2000"],
+  tags: ["literature", "politics", "healthcare", "art", "veterans", "sports", "business", "media", "education", "law"],
   groups: ["first", "inuit", "metis"],
   filterText: ""
 })
@@ -29,6 +29,9 @@ export const mutations = {
       }
     }
   },
+  changeTags(state, value){
+    state.tags = value;
+  },
   
   addGroup(state, value) {
     state.groups.push(value);
@@ -40,6 +43,9 @@ export const mutations = {
         i--;
       }
     }
+  },
+  changeGroups(state, value){
+    state.groups = value;
   },
   
   changeText(state, value) {

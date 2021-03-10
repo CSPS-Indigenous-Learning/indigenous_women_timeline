@@ -31,6 +31,8 @@
 
           <div class="topbar-buttons">
             <div>
+              <a href="#" :class="allActivated(tags, 'tags') ? ['activated', 'all'] : 'all'" @click.prevent="toggleFilter('all', 'tag')" :aria-label="(((!allActivated(tags, 'tags')) ? $t('showAll') : $t('hideAll'))) + $t('tags')"><span>{{ $t('all') }}</span></a>
+
               <a href="#" :class="isActivated('literature', tags) ? 'activated' : ''" @click.prevent="toggleFilter('literature', 'tag')" :aria-label="(((!isActivated('literature', tags)) ? $t('showTags') : $t('hideTags'))) + $t('literature') + (($i18n.locale === 'en') ? '”' : ' »')"><span>{{ $t('literature') }}</span></a>
               <a href="#" :class="isActivated('politics', tags) ? 'activated' : ''" @click.prevent="toggleFilter('politics', 'tag')" :aria-label="(((!isActivated('politics', tags)) ? $t('showTags') : $t('hideTags'))) + $t('politics') + (($i18n.locale === 'en') ? '”' : ' »')"><span>{{ $t('politics') }}</span></a>
               <a href="#" :class="isActivated('healthcare', tags) ? 'activated' : ''" @click.prevent="toggleFilter('healthcare', 'tag')" :aria-label="(((!isActivated('healthcare', tags)) ? $t('showTags') : $t('hideTags'))) + $t('healthcare') + (($i18n.locale === 'en') ? '”' : ' »')"><span>{{ $t('healthcare') }}</span></a>
@@ -43,6 +45,8 @@
               <a href="#" :class="isActivated('law', tags) ? 'activated' : ''" @click.prevent="toggleFilter('law', 'tag')" :aria-label="(((!isActivated('law', tags)) ? $t('showTags') : $t('hideTags'))) + $t('law') + (($i18n.locale === 'en') ? '”' : ' »')"><span>{{ $t('law') }}</span></a>
             </div>
             <div class="groups">
+              <a href="#" :class="allActivated(groups, 'groups') ? ['activated', 'all'] : 'all'" @click.prevent="toggleFilter('all', 'group')" :aria-label="(((!allActivated(groups, 'groups')) ? $t('showAll') : $t('hideAll'))) + $t('groups')"><span>{{ $t('all') }}</span></a>
+
               <a href="#" :class="isActivated('first', groups) ? 'activated' : ''" @click.prevent="toggleFilter('first', 'group')" :aria-label="(((!isActivated('first', groups)) ? $t('showTags') : $t('hideTags'))) + $t('first') + (($i18n.locale === 'en') ? '”' : ' »')"><span>{{ $t('first') }}</span></a>
               <a href="#" :class="isActivated('inuit', groups) ? 'activated' : ''" @click.prevent="toggleFilter('inuit', 'group')" :aria-label="(((!isActivated('inuit', groups)) ? $t('showTags') : $t('hideTags'))) + $t('inuit') + (($i18n.locale === 'en') ? '”' : ' »')"><span>{{ $t('inuit') }}</span></a>
               <a href="#" :class="isActivated('metis', groups) ? 'activated' : ''" @click.prevent="toggleFilter('metis', 'group')" :aria-label="(((!isActivated('metis', groups)) ? $t('showTags') : $t('hideTags'))) + $t('metis') + (($i18n.locale === 'en') ? '”' : ' »')"><span>{{ $t('metis') }}</span></a>
@@ -69,7 +73,9 @@
         filterText: "",
         isSmallScreen: false,
         changeTextareaSize: false,
-        expandMenu: false
+        expandMenu: false,
+        availableTags: ["literature", "politics", "healthcare", "art", "veterans", "sports", "business", "media", "education", "law"],
+        availableGroups: ["first", "inuit", "metis"]
       }
     },
 
@@ -102,6 +108,8 @@
 
     methods:{
       toggleFilter(filter, type){
+        var all;
+
         if(type == "period"){
           if(this.isActivated(filter, this.periods)){
             this.$store.commit('filters/removePeriod', filter);
@@ -111,19 +119,41 @@
           }
         }
         else if(type == "tag"){
-          if(this.isActivated(filter, this.tags)){
-            this.$store.commit('filters/removeTag', filter);
+          if(filter == "all"){
+            if(this.allActivated(this.tags, 'tags')){
+              this.$store.commit('filters/changeTags', []);
+            }
+            else{
+              all = this.availableTags;
+              this.$store.commit('filters/changeTags', all);
+            }
           }
           else{
-            this.$store.commit('filters/addTag', filter);
+            if(this.isActivated(filter, this.tags)){
+              this.$store.commit('filters/removeTag', filter);
+            }
+            else{
+              this.$store.commit('filters/addTag', filter);
+            }
           }
         }
         else if(type == "group"){
-          if(this.isActivated(filter, this.groups)){
-            this.$store.commit('filters/removeGroup', filter);
+          if(filter == "all"){
+            if(this.allActivated(this.groups, 'groups')){
+              this.$store.commit('filters/changeGroups', []);
+            }
+            else{
+              all = this.availableGroups;
+              this.$store.commit('filters/changeGroups', all);
+            }
           }
           else{
-            this.$store.commit('filters/addGroup', filter);
+            if(this.isActivated(filter, this.groups)){
+              this.$store.commit('filters/removeGroup', filter);
+            }
+            else{
+              this.$store.commit('filters/addGroup', filter);
+            }
           }
         }
       },
@@ -137,6 +167,30 @@
         }
 
         return activated;
+      },
+      allActivated(arr, type){
+        var allActivated = true, available, activated;
+
+        if(type == "tags"){
+          available = this.availableTags;
+        }
+        else if(type == "groups"){
+          available = this.availableGroups;
+        }
+
+        for(var i = 0; i < available.length; i++){
+          activated = false;
+
+          for(var j = 0; j < arr.length; j++){
+            if(arr[j] == available[i]){
+              activated = true;
+            }
+          }
+
+          if(!activated) allActivated = false;
+        }
+
+        return allActivated;
       },
       checkSmallScreen() {
         if($(window).width() <= 997){
@@ -359,8 +413,12 @@
               transform: scale(0.9);
 
               @media (min-width: 992px){
-                flex: 0 0 19%;
+                flex: 0 0 15.666666667%;
                 margin-right: 1%;
+              }
+
+              &.all{
+                border: 2px solid black;
               }
 
               &.activated{
@@ -456,6 +514,8 @@
       
       "tagsLabel": "Use tags to filter results&hellip;",
 
+      "all": "All",
+
       "literature": "Literature",
       "politics": "Politics",
       "healthcare": "Healthcare",
@@ -476,6 +536,12 @@
       "showTags": "Show women with the tag “",
       "hideTags": "Hide women with the tag “",
 
+      "showAll": "Show women in all ",
+      "hideAll": "Hide women in all ",
+
+      "tags": "activity sectors",
+      "groups": "groups",
+
       "collapseMenu": "Collapse Menu" ,
       "expandMenu": "Expand Menu",
 
@@ -485,10 +551,12 @@
       "title": "La chronologie des femmes autochtones influentes",
 
       "tagsLabel": "Utiliser les balises pour filtrer les résultats&hellip;",
+
+      "all": "Tout",
       
       "literature": "Littérature",
       "politics": "Politique",
-      "healthcare": "Soins de santé",
+      "healthcare": "Santé",
       "art": "Art",
       "veterans": "Vétérantes",
       "sports": "Sports",
@@ -505,6 +573,12 @@
 
       "showTags": "Montrer les femmes avec la balise « ",
       "hideTags": "Cacher les femmes avec la balise « ",
+
+      "showAll": "Montrer les femmes dans tous les ",
+      "hideAll": "Cacher les femmes dans tous les ",
+
+      "tags": "secteurs d'activité",
+      "groups": "groupes",
 
       "collapseMenu": "Réduire le menu" ,
       "expandMenu": "Étendre le menu",
