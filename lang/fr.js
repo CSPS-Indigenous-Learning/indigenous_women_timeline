@@ -154,9 +154,9 @@ export default {
       },
       1: {
         name: "Carol Geddes",
-        birth: "1902",
-        death: "1991",
-        hideDates: false,
+        birth: "<span class=\"review\">1902</span>",
+        death: "",
+        hideDates: true,
         imgSrc: "carol_geddes",
         tags: ["media"],
         group: ["first"],
@@ -214,7 +214,7 @@ export default {
         hideDates: false,
         imgSrc: "daphne_odjig",
         tags: ["art"],
-        group: ["inuit"],
+        group: ["first"],
         content: "<p>Artiste de renommée internationale, Daphne Odjig est née le 11 septembre 1919 et a grandi dans la réserve indienne non cédée de Wikwemikong sur l'île Manitoulin (Lac Huron), Ontario Canada. Son père et son grand-père, le chef Jonas Odjig, étaient Potawatomi, descendant du grand chef <span lang=\"en\">Black Partridge</span>. Elle a toujours montré un intérêt pour l'art&ThinSpace;&ndash;&ThinSpaceencouragé d'abord par son grand-père qui était sculpteur sur pierre&ThinSpace;&ndash;&ThinSpacemais pendant des années, ses images ont été très influencées par un groupe éclectique de peintres européens modernes. Sa peinture est souvent caractérisée comme étant le style «&nbsp;Woodlands&nbsp;» ou le style pictographique.</p><p>Elle a été la force motrice de la <span lang=\"en\">Professional Native Indian Artists Association</span>, plus connue sous le nom de <span lang=\"en\">Indian Group of Seven</span>, un groupe considéré comme un pionnier dans la mise en avant de l'art des Premières nations dans le monde de l'art canadien. Elle a reçu de nombreuses récompenses pour son travail, notamment l'Ordre du Canada, le Prix du Gouverneur général et cinq doctorats honorifiques.</p>",
         sources: [{ link: "https://en.wikipedia.org/wiki/Daphne_Odjig", name: "Daphne Odjig&ThinSpace;&ndash;&ThinSpace;Wikpedia" }, { link: "http://www.native-art-in-canada.com/daphneodjig.html ", name: "Daphne Odjig, Member of the Indian Group of Seven&ThinSpace;&ndash;&ThinSpace;Native Art in Canada" }, { link: "http://odjig.com/", name: "Daphne Odjig" }]
       },

@@ -154,9 +154,9 @@ export default {
       },
       1: {
         name: "Carol Geddes",
-        birth: "1902",
-        death: "1991",
-        hideDates: false,
+        birth: "<span class=\"review\">1902</span>",
+        death: "",
+        hideDates: true,
         imgSrc: "carol_geddes",
         tags: ["media"],
         group: ["first"],
@@ -214,7 +214,7 @@ export default {
         hideDates: false,
         imgSrc: "daphne_odjig",
         tags: ["art"],
-        group: ["inuit"],
+        group: ["first"],
         content: "<p>Internationally recognized and renowned artist Daphne Odjig was born September 11, 1919 and raised on the Wikwemikong Unceded Indian Reserve on Manitoulin Island (Lake Huron), Ontario Canada. Her father and her grandfather, Chief Jonas Odjig, were Potawatomi, descended from the great chief Black Partridge. She had always shown an interest in art&ThinSpace;&ndash;&ThinSpace;encouraged first by her grandfather who was a stone carver&ThinSpace;&ndash;&ThinSpace;but for years her images were much influenced by an eclectic group of modern European painters. Her painting is often characterized as Woodlands Style or as the pictographic style. </p><p>She was the driving force behind the Professional Native Indian Artists Association, colloquially known as the Indian Group of Seven, a group considered a pioneer in bringing First Nations art to the forefront of Canada's art world. She received a number of awards for her work, including the Order of Canada, the Governor General's Award and five honorary doctorates.</p>",
         sources: [{ link: "https://en.wikipedia.org/wiki/Daphne_Odjig", name: "Daphne Odjig&ThinSpace;&ndash;&ThinSpace;Wikpedia" }, { link: "http://www.native-art-in-canada.com/daphneodjig.html ", name: "Daphne Odjig, Member of the Indian Group of Seven&ThinSpace;&ndash;&ThinSpace;Native Art in Canada" }, { link: "http://odjig.com/", name: "Daphne Odjig" }]
       },
