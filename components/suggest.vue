@@ -2,7 +2,7 @@
   <div>
     <b-row class="suggest-container" align-v="center">
       <b-col cols="2" sm="1">
-        <a :href="'mailto:csps.ils-saqa.efpc@canada.ca?subject=' + $t('subject')" class="suggest" aria-labelledby="suggest-label"><font-awesome-icon icon="users" size="2x" role="presentation" /></a>
+        <a :href="'https://survey-sondage.csps-efpc.gc.ca/jfe/form/SV_e4mPwy9QpkisQ98' + (($i18n.locale === 'fr') ? '?Q_Language=FR-CA' : '')" class="suggest" aria-labelledby="suggest-label" target="_blank" rel="external" :title="(($i18n.locale == 'en') ? 'Link to the questionnaire to suggest new influential women' : 'Lien vers le questionnaire pour suggérer de nouvelles femmes influentes')"><font-awesome-icon icon="users" size="2x" role="presentation" /></a>
       </b-col>
       <b-col cols="10" sm="11">
         <div id="suggest-label" class="text-center">{{ $t('label') }}</div>
