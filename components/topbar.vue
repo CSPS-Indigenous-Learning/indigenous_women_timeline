@@ -108,8 +108,6 @@
 
     methods:{
       toggleFilter(filter, type){
-        var all;
-
         if(type == "period"){
           if(this.isActivated(filter, this.periods)){
             this.$store.commit('filters/removePeriod', filter);
@@ -124,8 +122,10 @@
               this.$store.commit('filters/changeTags', []);
             }
             else{
-              all = this.availableTags;
-              this.$store.commit('filters/changeTags', all);
+              this.$store.commit('filters/changeTags', []);
+              for(var i = 0; i < this.availableTags.length; i++){
+                this.$store.commit('filters/addTag', this.availableTags[i]);
+              }
             }
           }
           else{
@@ -143,8 +143,10 @@
               this.$store.commit('filters/changeGroups', []);
             }
             else{
-              all = this.availableGroups;
-              this.$store.commit('filters/changeGroups', all);
+              this.$store.commit('filters/changeGroups', []);
+              for(var j = 0; j < this.availableGroups.length; j++){
+                this.$store.commit('filters/addGroup', this.availableGroups[j]);
+              }
             }
           }
           else{
