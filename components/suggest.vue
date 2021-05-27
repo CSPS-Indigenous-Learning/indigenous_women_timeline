@@ -2,7 +2,7 @@
   <div>
     <b-row class="suggest-container" align-v="center">
       <b-col cols="2" sm="1">
-        <a :href="'https://survey-sondage.csps-efpc.gc.ca/jfe/form/SV_e4mPwy9QpkisQ98' + (($i18n.locale === 'fr') ? '?Q_Language=FR-CA' : '')" class="suggest" aria-labelledby="suggest-label" target="_blank" rel="external" :title="(($i18n.locale == 'en') ? 'Link to the questionnaire to suggest new influential women' : 'Lien vers le questionnaire pour suggérer de nouvelles femmes influentes')"><font-awesome-icon icon="users" size="2x" role="presentation" /></a>
+        <a :href="'https://survey-sondage.csps-efpc.gc.ca/jfe/form/SV_e4mPwy9QpkisQ98' + (($i18n.locale === 'fr') ? '?Q_Language=FR-CA' : '')" class="suggest" aria-labelledby="suggest-label" target="_blank" rel="external" :title="(($i18n.locale == 'en') ? 'Link to the questionnaire to suggest Indigenous women' : 'Lien vers le questionnaire pour suggérer des femmes autochtones')"><font-awesome-icon icon="users" size="2x" role="presentation" /></a>
       </b-col>
       <b-col cols="10" sm="11">
         <div id="suggest-label" class="text-center">{{ $t('label') }}</div>
@@ -125,11 +125,11 @@
 
   {
     "en": {
-      "label": "Suggest New Influential Women",
+      "label": "Suggest Indigenous Women",
       "subject": "New%20names%20suggestion%20for%20the%20Timeline%20of%20Influential%20Indigenous%20Women"
     },
     "fr": {
-      "label": "Suggérer de nouvelles femmes influentes",
+      "label": "Suggérer des femmes autochtones",
       "subject": "Suggestion%20de%20nouveaux%20noms%20pour%20la%20chronologie%20des%20femmes%20autochtones%20influentes"
     }
   }
