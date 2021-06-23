@@ -125,12 +125,10 @@
 
   {
     "en": {
-      "label": "Suggest Indigenous Women",
-      "subject": "New%20names%20suggestion%20for%20the%20Timeline%20of%20Influential%20Indigenous%20Women"
+      "label": "Suggest Indigenous Women"
     },
     "fr": {
-      "label": "Suggérer des femmes autochtones",
-      "subject": "Suggestion%20de%20nouveaux%20noms%20pour%20la%20chronologie%20des%20femmes%20autochtones%20influentes"
+      "label": "Suggérer des femmes autochtones"
     }
   }
 
