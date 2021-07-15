@@ -32,6 +32,7 @@
           <p>This is an invitation to become acquainted with First Nations, Inuit and Métis women, girls and <abbr title="Two-Spirit, lesbian, gay, bisexual, transgender, queer, questioning, intersex and asexual">2SLGBTQQIA</abbr> people. They are mothers, daughters, sisters, aunts, nieces, grandmothers and granddaughters; they are also friends and colleagues.</p>
           <p>Each one is loved and admired. Each one is to be remembered. </p>
           <p>Find out more by consulting the Timeline of Influential Indigenous Women.</p>
+          <p style="font-size: 1.1rem; margin-top: 30px; margin-bottom: 40px;"><strong>Note: All content comes from sources publicly available at the time of the information collection.</strong></p>
         </b-col>
         <b-col v-else-if="$i18n.locale === 'fr'">
           <p>La chronologie des femmes autochtones influentes documente la vie de plus de 150 femmes, filles, bispirituelles, lesbiennes, gaies, bisexuelles, transgenres, queer, en questionnement, intersexuelles et asexuées (<abbr>2SLGBTQQIA</abbr>) des Premières nations, des Inuits et des Métis. Elle reconnaît et valorise les rôles et contributions essentiels des femmes autochtones à la société canadienne.</p>
@@ -50,6 +51,7 @@
           <p>C'est une invitation à faire connaissance avec les femmes, les filles et les personnes <abbr title="bispirituelles, lesbiennes, gaies, bisexuelles, transgenres, queer, en questionnement, intersexuelles et asexuées">2SLGBTQQIA</abbr> des Premières nations, des Inuits et des Métis. Ce sont des mères, des filles, des s&oelig;urs, des tantes, des nièces, des grand-mères et des petites-filles&ThinSpace;; ce sont aussi des amies et des collègues.</p>
           <p>Chacun est aimé et admiré. On doit se souvenir de chacune d’elles.</p>
           <p>Pour en savoir plus, consultez la chronologie des femmes autochtones influentes.</p>
+          <p style="font-size: 1.1rem; margin-top: 30px; margin-bottom: 40px;"><strong>Note&nbsp;: Le contenu provident de sources publiquement disponibles au moment de la collecte d’information.</strong></p>
         </b-col>
       </b-row>
       <b-row>
