@@ -34,7 +34,10 @@
         </b-row>
         <b-row style="margin-top: 25px; margin-bottom: 25px;">
           <b-col cols="12" md="6">
-            <img :src="require('~/assets/persons/' + info.imgSrc + '.jpg')" :alt="(($i18n.locale=='en') ? 'Image of ' : 'Image de ') + info.name | stripHTML" class="img-fluid">
+            <figure>
+              <img :src="require('~/assets/persons/' + info.imgSrc + '.jpg')" :alt="((info.imgCaption && info.imgCaption != '') ? info.imgCaption : (($i18n.locale=='en') ? 'Image of ' : 'Image de ') + info.name) | stripHTML" class="img-fluid">
+              <figcaption :id="id + '_caption'" v-if="info.imgCaption && info.imgCaption != ''" v-html="info.imgCaption" aria-hidden="true"></figcaption>
+            </figure>
           </b-col>
         </b-row>
         <b-row>
@@ -238,6 +241,11 @@
       }
       img.img-fluid{
         border-radius: 10px;
+      }
+      figcaption{
+        font-size: 0.9rem;
+        line-height: 1.2;
+        margin-top: 10px;
       }
       button.close{
         position: absolute;
