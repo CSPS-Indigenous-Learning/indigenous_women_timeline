@@ -560,7 +560,7 @@
       "politics": "Politique",
       "healthcare": "Santé",
       "art": "Art",
-      "veterans": "Vétérantes",
+      "veterans": "Vétéranes",
       "sports": "Sports",
       "business": "Affaires",
       "media": "Médias",

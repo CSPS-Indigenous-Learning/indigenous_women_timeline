@@ -5,12 +5,37 @@
       <img :src="require('~/assets/persons/' + info.imgSrc + '.jpg')" alt="">
       <!--<img :src="require('~/assets/persons/' + info.imgSrc + '.jpg')" :alt="$i18n.locale == 'en' ? 'Image of ' + info.name : 'Image de ' + info.name" v-b-tooltip.top.hover.focus.html="info.name + ' (' + info.birth + '-' + info.death + ') ' + $t('selectToExpand')">-->
       <span :id="id + '_name'">
-        <strong v-html="info.name"></strong>
+        <strong v-html="info.name + (($i18n.locale === 'en') ? ' and ' : ' et ') + info.name2" v-if="info.name2 && info.name2 != ''"></strong>
+        <strong v-html="info.name" v-else></strong>
         <span v-if="!info.hideDates">
           <br />
-          <span v-html="'(' + info.birth + '-' + info.death + ')'" aria-hidden="true"></span>
-          <span v-html="'(' + $t('bornIn') + ' ' + info.birth + ' ' + $t('deadIn') + ' ' + info.death + ')'" class="v-inv" v-if="info.death && info.death != ''"></span>
-          <span v-html="'(' + $t('bornIn') + ' ' + info.birth + ')'" class="v-inv" v-else></span>
+          <span v-html="'(' + info.birth + '-' + info.death + ')' + (($i18n.locale === 'en') ? ' and ' : ' et ') + '(' + info.birth2 + '-' + info.death2 + ')'" aria-hidden="true" v-if="info.birth2 && info.birth2 != ''"></span>
+          <span v-html="'(' + info.birth + '-' + info.death + ')'" aria-hidden="true" v-else></span>
+          
+          <!-- Two sets of dates -->
+          <span v-if="info.birth2 && info.birth2 != ''">
+
+            <!-- Both have death -->
+            <span v-html="'(' + $t('bornIn') + ' ' + info.birth + ' ' + $t('deadIn') + ' ' + info.death + ')' + (($i18n.locale === 'en') ? ' and ' : ' et ') + '(' + $t('bornIn') + ' ' + info.birth2 + ' ' + $t('deadIn') + ' ' + info.death2 + ')'" class="v-inv" v-if="info.death && info.death != '' && info.death2 && info.death2 != ''"></span>
+            
+            <!-- First has death -->
+            <span v-html="'(' + $t('bornIn') + ' ' + info.birth + ' ' + $t('deadIn') + ' ' + info.death + ')' + (($i18n.locale === 'en') ? ' and ' : ' et ') + '(' + $t('bornIn') + ' ' + info.birth2 +')'" class="v-inv"  v-else-if="info.death && info.death != ''"></span>
+            
+            <!-- Second has death -->
+            <span v-html="'(' + $t('bornIn') + ' ' + info.birth + ')' + (($i18n.locale === 'en') ? ' and ' : ' et ') + '(' + $t('bornIn') + ' ' + info.birth2 + ' ' + $t('deadIn') + ' ' + info.death2 + ')'" class="v-inv" v-else-if="info.death2 && info.death2 != ''"></span>
+            
+            <!-- None has death -->
+            <span v-html="'(' + $t('bornIn') + ' ' + info.birth + ')' + (($i18n.locale === 'en') ? ' and ' : ' et ') + '(' + $t('bornIn') + ' ' + info.birth + ')'" class="v-inv" v-else></span>
+
+          </span>
+
+          <!-- One set of dates -->
+          <span v-else>
+
+            <span v-html="'(' + $t('bornIn') + ' ' + info.birth + ' ' + $t('deadIn') + ' ' + info.death + ')'" class="v-inv" v-if="info.death && info.death != ''"></span>
+            <span v-html="'(' + $t('bornIn') + ' ' + info.birth + ')'" class="v-inv" v-else></span>
+          
+          </span>
         </span>
         <br />
         <span class="group" v-if="info.group.length == 1">{{ $t(info.group[0]) }}</span>
@@ -18,15 +43,100 @@
       </span>
     </a>
     <transition name="timeline-content">
-      <div class="content" v-show="showContent" role="tabpanel" :aria-label="info.name + $t('pressEsc') | stripHTML" :aria-expanded="showContentString" :aria-hidden="showContentStringInverted" tabindex="0" @keydown.esc="close">
-        <button class="close" @click="close"><font-awesome-icon icon="times" size="1x" role="presentation" /><span class="v-inv">{{ $t('closePanel') }} {{ $t(info.name) }}</span></button>
+      <div class="content" v-show="showContent" role="tabpanel" :aria-label="((info.name2 && info.name2 != '') ? info.name + (($i18n.locale === 'en') ? ' and ' : ' et ') + info.name2 : info.name) + $t('pressEsc') | stripHTML" :aria-expanded="showContentString" :aria-hidden="showContentStringInverted" tabindex="0" @keydown.esc="close">
+        <button class="close" @click="close"><font-awesome-icon icon="times" size="1x" role="presentation" /><span class="v-inv">{{ $t('closePanel') }} {{ ((info.name2 && info.name2 != '') ? info.name + (($i18n.locale === 'en') ? ' and ' : ' et ') + info.name2 : info.name) }}</span></button>
         <b-row>
           <b-col>
-            <h2 v-html="info.name + ' (' + info.birth + '-' + info.death + ')'" aria-hidden="true" v-if="!info.hideDates"></h2>
-            <h2 v-html="info.name" aria-hidden="true" v-else></h2>
-            <div v-if="!info.hideDates">
-              <h2 :id="id" v-html="info.name + ' (' + $t('bornIn') + ' ' + info.birth + ' ' + $t('deadIn') + ' ' + info.death + ')'" class="v-inv" v-if="info.death && info.death != ''"></h2>
-              <h2 :id="id" v-html="info.name + ' (' + $t('bornIn') + ' ' + info.birth + ')'" class="v-inv" v-else></h2>
+            <div v-if="info.hideDates">
+
+              <!-- Dates hidden, so only name(s) -->
+              <h2 v-html="info.name + (($i18n.locale === 'en') ? ' and ' : ' et ') + info.name2" v-if="info.name2 && info.name2 != ''"></h2>
+              <h2 v-html="info.name" v-else></h2>
+
+            </div>
+            <div v-else>
+
+              <!-- Two names -->
+              <div v-if="info.name2 && info.name2 != ''">
+
+                <!-- Two sets of dates -->
+                <div v-if="info.birth && info.birth != '' && info.birth2 && info.birth2 != ''">
+
+                  <!-- Both have death -->
+                  <div v-if="info.death && info.death != '' && info.death2 && info.death2 != ''">
+
+                    <!-- Visually only -->
+                    <h2 :id="id" v-html="info.name + ' (' + info.birth + '-' + info.death + ')' + (($i18n.locale === 'en') ? ' and ' : ' et ') + info.name2 + ' (' + info.birth2 + '-' + info.death2 + ')'" aria-hidden="true"></h2>
+                    
+                    <!-- SR only -->
+                    <h2 v-html="info.name + ' (' + $t('bornIn') + ' ' + info.birth + ' ' + $t('deadIn') + ' ' + info.death + ')' + (($i18n.locale === 'en') ? ' and ' : ' et ') + info.name2 + ' (' + $t('bornIn') + ' ' + info.birth2 + ' ' + $t('deadIn') + ' ' + info.death2 + ')'" class="v-inv"></h2>
+                  </div>
+                  
+                  <!-- First has death -->
+                  <div v-else-if="info.death && info.death != ''">
+                    
+                    <!-- Visually only -->
+                    <h2 :id="id" v-html="info.name + ' (' + info.birth + '-' + info.death + ')' + (($i18n.locale === 'en') ? ' and ' : ' et ') + info.name2 + ' (' + info.birth2 + '-)'" aria-hidden="true"></h2>
+                    
+                    <!-- SR only -->
+                    <h2 v-html="info.name + ' (' + $t('bornIn') + ' ' + info.birth + ' ' + $t('deadIn') + ' ' + info.death + ')' + (($i18n.locale === 'en') ? ' and ' : ' et ') + info.name2 + ' (' + $t('bornIn') + ' ' + info.birth2 + ')'" class="v-inv"></h2>
+                  </div>
+
+                  <!-- Second has death -->
+                  <div v-else-if="info.death2 && info.death2 != ''">
+                    
+                    <!-- Visually only -->
+                    <h2 :id="id" v-html="info.name + ' (' + info.birth + '-)' + (($i18n.locale === 'en') ? ' and ' : ' et ') + info.name2 + ' (' + info.birth2 + '-' + info.death2 + ')'" aria-hidden="true"></h2>
+                    
+                    <!-- SR only -->
+                    <h2 v-html="info.name + ' (' + $t('bornIn') + ' ' + info.birth+ ')' + (($i18n.locale === 'en') ? ' and ' : ' et ') + info.name2 + ' (' + $t('bornIn') + ' ' + info.birth2 + ' ' + $t('deadIn') + ' ' + info.death2 + ')'" class="v-inv"></h2>
+                  </div>
+                  
+                  <!-- None has death -->
+                  <div v-else>
+                    
+                    <!-- Visually only -->
+                    <h2 :id="id" v-html="info.name + ' (' + info.birth + '-)' + (($i18n.locale === 'en') ? ' and ' : ' et ') + info.name2 + ' (' + info.birth2 + '-)'" aria-hidden="true"></h2>
+                    
+                    <!-- SR only -->
+                    <h2 v-html="info.name + ' (' + $t('bornIn') + ' ' + info.birth + ')' + (($i18n.locale === 'en') ? ' and ' : ' et ') + info.name2 + ' (' + $t('bornIn') + ' ' + info.birth2 + ')'" class="v-inv"></h2>
+                  </div>
+                  
+                </div>
+
+                <!-- one set of dates -->
+                <div v-else-if="info.birth && info.birth != ''">
+
+                  <!-- Visually only -->
+                  <h2 :id="id" v-html="info.name + (($i18n.locale === 'en') ? ' and ' : ' et ') + info.name2 + ' (' + info.birth + '-' + info.death + ')'" aria-hidden="true" v-if="info.death && info.death != ''"></h2>
+                  <h2 :id="id" v-html="info.name + (($i18n.locale === 'en') ? ' and ' : ' et ') + info.name2 + ' (' + info.birth + '-)'" aria-hidden="true" v-else></h2>
+                  
+                  <!-- SR only -->
+                  <h2 v-html="info.name + (($i18n.locale === 'en') ? ' and ' : ' et ') + info.name2 + ' (' + $t('bornIn') + ' ' + info.birth + ' ' + $t('deadIn') + ' ' + info.death + ')'" class="v-inv" v-if="info.death && info.death != ''"></h2>
+                  <h2 v-html="info.name + (($i18n.locale === 'en') ? ' and ' : ' et ') + info.name2 + ' (' + $t('bornIn') + ' ' + info.birth + ')'" class="v-inv" v-else></h2>
+
+                </div>
+                
+                <!-- No dates -->
+                <div v-else>
+
+                  <h2 :id="id" v-html="info.name + (($i18n.locale === 'en') ? ' and ' : ' et ') + info.name2"></h2>
+
+                </div>
+              </div>
+
+              <!-- One name -->
+              <div v-else>
+
+                <!-- Visually only -->
+                <h2 :id="id" v-html="info.name + ' (' + info.birth + '-' + info.death + ')'" aria-hidden="true" v-if="info.death && info.death != ''"></h2>
+                <h2 :id="id" v-html="info.name + ' (' + info.birth + '-)'" aria-hidden="true" v-else></h2>
+                
+                <!-- SR only -->
+                <h2 v-html="info.name + ' (' + $t('bornIn') + ' ' + info.birth + ' ' + $t('deadIn') + ' ' + info.death + ')'" class="v-inv" v-if="info.death && info.death != ''"></h2>
+                <h2 v-html="info.name + ' (' + $t('bornIn') + ' ' + info.birth + ')'" class="v-inv" v-else></h2>
+
+              </div>
             </div>
             <h3 class="group" v-if="info.group.length == 1">{{ $t(info.group[0]) }}</h3>
             <h3 class="group" v-else-if="info.group.length == 2">{{ $t(info.group[0]) }}, {{ $t(info.group[1]) }}</h3>
@@ -35,7 +145,7 @@
         <b-row style="margin-top: 25px; margin-bottom: 25px;">
           <b-col cols="12" md="6">
             <figure>
-              <img :src="require('~/assets/persons/' + info.imgSrc + '.jpg')" :alt="((info.imgCaption && info.imgCaption != '') ? info.imgCaption : (($i18n.locale=='en') ? 'Image of ' : 'Image de ') + info.name) | stripHTML" class="img-fluid">
+              <img :src="require('~/assets/persons/' + info.imgSrc + '.jpg')" :alt="((info.imgCaption && info.imgCaption != '') ? info.imgCaption : (($i18n.locale=='en') ? 'Image of ' : 'Image de ') + ((info.name2 && info.name2 != '') ? info.name + (($i18n.locale === 'en') ? ' and ' : ' et ') + info.name2 : info.name)) | stripHTML" class="img-fluid">
               <figcaption :id="id + '_caption'" v-if="info.imgCaption && info.imgCaption != ''" v-html="info.imgCaption" aria-hidden="true"></figcaption>
             </figure>
           </b-col>
