@@ -1541,7 +1541,7 @@ export default {
         tags: ["art"],
         group: ["inuit"],
         content: "<p>Nancy Saunders est une artiste inuite multidisciplinaire originaire de Kuujjuaq, au Nunavik (Nord du Québec). Elle a étudié à l'Université Concordia où elle a exploré une série de médias, dont le dessin, la peinture et la sculpture. Son processus de création mélange l'art traditionnel inuit avec des formes modernes en explorant des thèmes enracinés dans son héritage ancestral mais en utilisant des approches artistiques contemporaines. Ce faisant, elle espère soutenir et renouveler la vitalité de l'art inuit. Basée à Montréal, <abbr title=\"Québec\">QC</abbr>, l'artiste partage son temps entre la ville et sa communauté d'origine de Kuujjuaq, Nunavik&ThinSpace;&ndash;&ThinSpace;un endroit qui continue à influencer profondément son travail. Travaillant sur plusieurs médias, Niap étudie avec attention son héritage culturel à travers sa pratique. En 2018, Niap a reçu la bourse Virginia J. Watt de l'<span lang=\"en\">Inuit Art Foundation (<abbr>IAF</abbr>)</span>. Le travail de Nancy Saunders a été exposé à la galerie McClure du Centre des arts visuels de Montréal en 2015. Plus récemment, elle a été sélectionnée pour créer une pièce artistique originale pour la galerie <span lang=\"en\">Canada Goose Arctic</span> du Musée canadien de la nature dans le cadre du 150<sup>e</sup> anniversaire du Canada.</p>",
-        sources: [{ link: "http://www.oboro.net/en/individus/nancy-saunders", name: "Nancy Saunders&ThinSpace;&ndash;&ThinSpace;Oboro" }, { link: "https://www.inuitartfoundation.org/iad/artist/Niap", name: "Niap&ThinSpace;&ndash;&ThinSpace;Inuit Art" }]
+        sources: [{ link: "https://www.inuitartfoundation.org/iad/artist/Niap", name: "Niap&ThinSpace;&ndash;&ThinSpace;Inuit Art" }]
       },
       21: {
         name: "Rhonda Head",
@@ -1950,7 +1950,7 @@ export default {
         tags: ["media"],
         group: ["first"],
         content: "<p>Pionnière du monde des médias, Joan a collaboré à l’animation de l’émission de radio Keweetin Kountry, en anglais et en cri, avant de devenir journaliste primée à la télévision de la <abbr title=\"Canadian Broadcasting Corporation\" lang=\"en\">CBC</abbr> à Regina et dans les Territoires du Nord-Ouest. Elle a fait la manchette lorsqu’elle est devenue la première personne originaire des Premières Nations à se faire élire à l’Assemblée législative de la Saskatchewan.</p>",
-        sources: [{ link: "https://mediasmarts.ca/digital-media-literacy/media-issues/diversity-media/aboriginal-people/aboriginal-people-news?gclid=CjwKCAjwztL2BRATEiwAvnALcj5bGUWnLrWqk5lOcRIRkwt9dX4j5qcBxaT_5cwurIgmqSJHhp-MTBoCrlEQAvD_BwE", name: "Aboriginal People in the News&ThinSpace;&ndash;&ThinSpace;Media Smarts" }, { link: "http://www.reginawhm.ca/about-womensfirsts.php", name: "Women's Firsts&ThinSpace;&ndash;&ThinSpace;Regina Women's History Month" }]
+        sources: [{ link: "https://mediasmarts.ca/digital-media-literacy/media-issues/diversity-media/aboriginal-people/aboriginal-people-news?gclid=CjwKCAjwztL2BRATEiwAvnALcj5bGUWnLrWqk5lOcRIRkwt9dX4j5qcBxaT_5cwurIgmqSJHhp-MTBoCrlEQAvD_BwE", name: "Aboriginal People in the News&ThinSpace;&ndash;&ThinSpace;Media Smarts" }]
       },
       13: {
         name: "Shirley Ida Williams",
